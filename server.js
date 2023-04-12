@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const path = require("path")
 const app = express()
@@ -5,7 +6,7 @@ const port = 3000
 
 app.use("/", express.static(path.join(__dirname, "/public")))
 
-app.get('/', require("./routes/login"));
+app.get('/login', require("./routes/loginRoutes"));
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
