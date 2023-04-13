@@ -27,11 +27,13 @@ const login_button = document.querySelector('#login-button');
 login_button.addEventListener('click', (event) => {
   event.preventDefault();
 
-  // Retrieve the username and password from the form submission
+  // Retrieve the username and password from the form
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
   
-  // Send a POST request to the server to check if the user is authenticated
+  // Send a GET request to the server with the
+  // username and password embedded in the request URL 
+  // to check if the user is authenticated
   fetch(`/login/${username}/${password}`, {
     method: 'GET'
   })
@@ -39,7 +41,7 @@ login_button.addEventListener('click', (event) => {
     if (response.ok) {
       // User authenticated, redirect to a different page
       //window.location.href = '../views/applicationForm.html';
-      console.log("SUCCESSFUL LOGIN");
+      console.log(response);
     } else {
       // Authentication failed, show an error message
       alert('Invalid username or password');

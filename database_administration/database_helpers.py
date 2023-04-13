@@ -43,9 +43,11 @@ def addDummyValues():
 
 
 
+#createPasswords = "CREATE TABLE Passwords(username varchar(30) primary key, password varchar(256))"
+#curr.execute(createPasswords)
 #createNewTables()
 #printTableList()
-curr.execute("SELECT password FROM Passwords where username ='chinguun'");
+curr.execute("SELECT * from Passwords");
 print(curr.fetchall())
 
 # #curr.execute("Select * FROM Applications LIMIT 0")
