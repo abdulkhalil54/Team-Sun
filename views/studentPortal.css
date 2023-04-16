@@ -1,16 +1,23 @@
 .button {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-
+    display: block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #fefefe;
+    margin-top: 24px;
+    font-size:22px;
+    font-size: 2em;
+    font-display: center;
+    color:white;
+    
+    background-color:skyblue;
     border-radius: 50%;
+}
+.button__icon{
+    text-align: center;
 }
 .button:hover{
     background:gray;
+}
+.table-hover{
+
 }
