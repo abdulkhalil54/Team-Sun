@@ -21,6 +21,9 @@
 .button:hover{
     background:gray;
 }
+.navBarItem{
+    font-size: 17px;
+}
 .table-hover{
 
 }
