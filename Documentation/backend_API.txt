@@ -1,0 +1,23 @@
+#TODO
+For the frontend team.
+
+For the login page:
+    request: {
+        method: GET
+        URL: "/login/'username'/'password'"
+        Requirements: Request's URL must have the username and password embedded
+        if password matches the password for the username => response{status: 200, json={message: "Successful login"}}
+        if password doesn't match the password for the username => response{status: 200, json={message: "Wrong password"}}
+        if username does not exist => response{status: 403, json={message: "ERROR: Username does not exist"}}
+    }
+For the registration page:
+    request: {
+        method: POST
+        URL: "/register"
+        Requirements: Must provide a request int the following format: {
+            body: JSON.stringify({ username, password }),
+            headers: { 'Content-Type': 'application/json' }
+        }
+        if registration is successful wiht the username and password in the database => response{status: 200, json={message: "registered"}}
+        if username is already taken by another user => response{status: 403, json={message: "ERROR: Username already taken"}}
+    }
