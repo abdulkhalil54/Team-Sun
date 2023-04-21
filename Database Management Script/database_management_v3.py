@@ -21,7 +21,7 @@ createApplications = "CREATE TABLE Applications(username varchar(50), firstName 
 createStudents = "CREATE TABLE Students(username varchar(50), conflict int, ranking int, sectionRanked int, matched int);"
 createSections = "CREATE TABLE Sections(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)"
 createProfessors = "CREATE TABLE Professors(username varchar(50), section int, ranking int, appRanked varchar(50))"
-createUsers = "CREATE TABLE Users(username varchar(50), password varchar(25), type Boolean, firstName varchar(50), lastName varchar(50))"
+createUsers = "CREATE TABLE Users(username varchar(50), password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))"
 createMatchings = "CREATE TABLE Matchings(section int, username varchar(50))"
 
 def delete_main_tables():
@@ -55,7 +55,7 @@ def create_test_tables():
     curr.execute("CREATE TABLE Students_test(username varchar(50), conflict int, ranking int, sectionRanked int, matched int);")
     curr.execute("CREATE TABLE Sections_test(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)")
     curr.execute("CREATE TABLE Professors_test(username varchar(50), section int, ranking int, appRanked varchar(50))")
-    curr.execute("CREATE TABLE Users_test(username varchar(50), password varchar(25), type Boolean, firstName varchar(50), lastName varchar(50))")
+    curr.execute("CREATE TABLE Users_test(username varchar(50), password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))")
     curr.execute("CREATE TABLE Matchings_test(section int, username varchar(50))")
 
 # fill dummy values into _test tables 
