@@ -1,5 +1,6 @@
 # Team-Sun
-Manager Application 
-Before you run, you need to install certain dependencies.
-Check package.json for a full list.
-Use "npm run dev" afterwards to run the app
+Instructions on setting the app up for development.
+1. Download node.js
+2. Clone this repo
+3. Install dependencies stated in package-lock.json with "npm install 'package'"
+4. npm run dev to run the app and connect to localhost:3000

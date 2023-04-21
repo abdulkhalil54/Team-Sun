@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="/public/stylesheets/login.css"/>
-  <script src="/views/JS/login.js" type="module" defer></script>
+  <link rel="stylesheet" href="stylesheets/login.css"/>
+  <script src="javascripts/login.js" type="module" defer></script>
 </head>
 <body>
   <div class="container">
@@ -16,9 +16,9 @@
       </div>
       <div style = "margin-top: 10px; margin-bottom: 10px;">
         <label for="uname"><b>Username: </b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input id="username" type="text" placeholder="Enter Username" name="uname" required>
         <label for="psw"><b>Password: </b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input id="password" type="password" placeholder="Enter Password" name="psw" required>
       </div>
       <div id = "checkDiv" style = "display: flex; justify-content: center;">
         <label for="professor"><b>Professor: </b></label>
@@ -27,10 +27,10 @@
         <input type="checkbox" name="student">
       </div>
       <div>
-        <button type="login">Login</button>
+        <button id="login-button" type="login">Login</button>
       </div>
       <div>
-        <button style = "background-color:rgb(65, 194, 151);   border: 1px solid rgb(90, 190, 157);"type="register">No account? Register Here!</button>
+        <button id="register-button" style = "background-color:rgb(65, 194, 151);   border: 1px solid rgb(90, 190, 157);"type="register">No account? Register Here!</button>
       </div>
 
   </form>
