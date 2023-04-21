@@ -69,13 +69,12 @@
           </tr>
         </tbody>
     </table>
-    
+    <p id="test"></p>
     
   </div>
 
-
   <div>
-    <button type="button" class= "button">
+    <button type="button" class= "button" onclick="helpButton()">
         <span class = "button__icon">
             <ion-icon name="help-circle-outline"></ion-icon>
         </span>
@@ -83,5 +82,10 @@
   </div>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    function helpButton(){
+      document.getElementById("test").innerHTML = "This is help incase you need instructions:";
+    }
+  </script>
 </body>
 </html>
