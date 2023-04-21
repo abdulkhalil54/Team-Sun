@@ -1,0 +1,70 @@
+* This makes the page static ie no scroll option */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+  padding: 16px;
+  width: 35%;
+}
+
+/* Full-width select */
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.container {
+  font-family: Arial, sans-serif;
+  height: 100vh; /* set height to the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: pink;
+  color: black;
+  font-size: large;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 1px solid rgb(195, 130, 140);
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
