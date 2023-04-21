@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
 //@desc Login user
-//@route GET /login/:username/:passwrd
+//@route GET /login/:username/:password
 //@access Public
 
 const loginUser = asyncHandler(async (req, res) => {
