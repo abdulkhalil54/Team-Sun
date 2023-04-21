@@ -8,9 +8,10 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use(express.json())
 
-app.get('/', require("./routes/rootRoutes"));
+//app.get('/', require("./routes/rootRoutes"));
 
 app.get('/login/:username/:password', require("./routes/loginRoutes"));
+
 app.post('/register', require("./routes/loginRoutes"));
 //app.get('/application', require("./routes/loginRoutes"));
 

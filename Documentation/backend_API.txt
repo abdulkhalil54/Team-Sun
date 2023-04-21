@@ -1,23 +1,49 @@
 #TODO
 For the frontend team.
 
-For the login page:
-    request: {
-        method: GET
-        URL: "/login/'username'/'password'"
-        Requirements: Request's URL must have the username and password embedded
-        if password matches the password for the username => response{status: 200, json={message: "Successful login"}}
-        if password doesn't match the password for the username => response{status: 200, json={message: "Wrong password"}}
-        if username does not exist => response{status: 403, json={message: "ERROR: Username does not exist"}}
-    }
-For the registration page:
-    request: {
-        method: POST
-        URL: "/register"
-        Requirements: Must provide a request int the following format: {
-            body: JSON.stringify({ username, password }),
-            headers: { 'Content-Type': 'application/json' }
+ENDPOINTS:
+
+Endpoint: User login
+URL: /api/v1/login/'username'/'password'
+method: GET
+Body: NONE
+Response:
+1. 200 SUCCESSFUL: if password matches with the password of the user with that username
+        Response data:{
+            "message": "SUCCESS: Successful login" 
         }
-        if registration is successful wiht the username and password in the database => response{status: 200, json={message: "registered"}}
-        if username is already taken by another user => response{status: 403, json={message: "ERROR: Username already taken"}}
+2. 401 Unauthorized: if password doesn't match the password for the username
+        Response data:{
+            "message": "ERROR: Wrong password" 
+        }
+3. 404 Not found: if a user with that username does not exist
+        Response data:{
+            "message": ERROR: Username does not exist
+        }
+
+Endpoint: User registration
+URL: /api/v1/register
+method: POST
+headers: { 'Content-Type': 'application/json' }
+Body:  
+    Request Data Constraints:
+    {
+        "username": "[50 ASCII characters max]",
+        "password": "[72 ASCII characters max]",
+        "type": boolean,
+        "firstName": "[50 ASCII characters max]",
+        "lastName": "[50 ASCII characters max]",
     }
+Response:
+1. 200 SUCCESSFUL: if registration is successful with the users table having one more row
+        Response data:{
+            "message": "SUCCESS: Successful registration" 
+        }
+2. 409 Conflict: if username is already taken by another user
+        Response data:{
+            "message": "ERROR: Username already in use" 
+        }
+3. 400 Bad request: If the request violates data constraints
+        Response data:{
+            "message": "ERROR: Too long or too short username and/or password"
+        }
