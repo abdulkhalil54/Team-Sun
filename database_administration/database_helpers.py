@@ -86,8 +86,6 @@ delete_test_tables()
 create_test_tables()
 fill_dummy_values()
 
-# ------------------------------------------------------------------------------------------------------
-
 #retrieve (print) any main or _test table:
 def printTable(tableName):
     curr.execute('SELECT * FROM ' + tableName + ';')
@@ -97,8 +95,6 @@ def printTable(tableName):
 
 #example:
 printTable('Users')
-
-# ------------------------------------------------------------------------------------------------------
 
 # #FUNCTIONS possibly
 

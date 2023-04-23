@@ -10,7 +10,7 @@ app.use(express.json())
 
 //app.get('/', require("./routes/rootRoutes"));
 
-app.get('/login/:username/:password', require("./routes/loginRoutes"));
+app.get("/api/v1/login/:username/:password", require("./routes/loginRoutes"));
 
 app.post('/api/v1/register', require("./routes/regRoutes"));
 //app.get('/application', require("./routes/loginRoutes"));
