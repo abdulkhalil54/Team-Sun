@@ -47,7 +47,7 @@ def addDummyValues():
 #curr.execute(createPasswords)
 #createNewTables()
 #printTableList()
-curr.execute("SELECT * from Passwords");
+curr.execute("SELECT * from Users");
 print(curr.fetchall())
 
 # #curr.execute("Select * FROM Applications LIMIT 0")
