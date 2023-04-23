@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.get('/login/:username/:password', require("./routes/loginRoutes"));
 
-app.post('/register', require("./routes/loginRoutes"));
+app.post('/api/v1/register', require("./routes/regRoutes"));
 //app.get('/application', require("./routes/loginRoutes"));
 
 app.use((req, res, next) => {

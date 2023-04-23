@@ -21,7 +21,7 @@ createApplications = "CREATE TABLE Applications(username varchar(50), firstName 
 createStudents = "CREATE TABLE Students(username varchar(50), conflict int, ranking int, sectionRanked int, matched int);"
 createSections = "CREATE TABLE Sections(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)"
 createProfessors = "CREATE TABLE Professors(username varchar(50), section int, ranking int, appRanked varchar(50))"
-createUsers = "CREATE TABLE Users(username varchar(50), password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))"
+createUsers = "CREATE TABLE Users(username varchar(50) primary key, password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))"
 createMatchings = "CREATE TABLE Matchings(section int, username varchar(50))"
 
 def delete_main_tables():
@@ -55,7 +55,7 @@ def create_test_tables():
     curr.execute("CREATE TABLE Students_test(username varchar(50), conflict int, ranking int, sectionRanked int, matched int);")
     curr.execute("CREATE TABLE Sections_test(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)")
     curr.execute("CREATE TABLE Professors_test(username varchar(50), section int, ranking int, appRanked varchar(50))")
-    curr.execute("CREATE TABLE Users_test(username varchar(50), password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))")
+    curr.execute("CREATE TABLE Users_test(username varchar(50) primary key, password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))")
     curr.execute("CREATE TABLE Matchings_test(section int, username varchar(50))")
 
 # fill dummy values into _test tables 
@@ -94,59 +94,8 @@ def printTable(tableName):
     res = curr.fetchall()
     print(res)
 
+
 #example:
-printTable('Matchings_test')
+printTable('Users')
 
 # ------------------------------------------------------------------------------------------------------
-
-# #FUNCTIONS possibly
-
-# #take student username which is application identifer, return year in application
-# def getYear(username):
-#     curr.execute('SELECT * FROM Applications;')
-#     table = curr.fetchall()
-#     for row in table:
-#         if row[0] == username:
-#             return row[3]
-
-#     return "ERROR: username not found in table"
-
-# #take section id and return number of applicants currently in application pool
-# def getNumApps(id):
-#     curr.execute('SELECT * FROM Sections;')
-#     table = curr.fetchall()
-
-#     numApps = 0
-#     for row in table:
-#         if row[0] == id:
-#             numApps += 1
-#     return numApps
-
-# # input: section ID, output: list of usernames of students currently in the application pool for this section (empty if no applicants)
-# def getNamesApps(id):
-#     curr.execute('SELECT * FROM Sections;')
-#     table = curr.fetchall()
-#     namesApps = []
-#     for row in table:
-#         if row[0] == id:
-#             namesApps.append(row[4])
-#     return namesApps
-
-# print(getNamesApps(3))
-
-# # ----------------
-# # name   | ..... | attachments : [string] (foreign key)
-# # John |   ..... |   [resume.pdf]
-# #DOe   |  .....  |   [resume.pdf]
-
-
-# # file_id | link
-# #1         | https://attachments-429-manager-app.s3.amazonaws.com/credentials
-# #2         | https://attachments-429-manager-app.s3.amazonaws.com/doe_2.pdf
-
-# # possible rename functionality
-# # source: https://stackoverflow.com/questions/21184720/how-to-rename-files-and-folder-in-amazon-s3
-# def rename(fileKey, newFileKey):
-#     s3Client.copyObject(bucketName, fileKey, bucketName, newFileKey)
-#     s3Client.deleteObject(bucketName, fileKey)
-
