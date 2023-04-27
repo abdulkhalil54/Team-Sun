@@ -27,6 +27,13 @@ app.get('/portal/student', require("./routes/studentPortalRoutes"));
 
 app.post('/portal/student', require("./routes/studentPortalRoutes"));
 
+app.get('/logout', function(req, res){
+  req.session.destroy(function(){
+     console.log("user logged out.")
+  });
+  res.redirect('/login');
+});
+
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 })

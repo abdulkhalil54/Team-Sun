@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Portal</title>
-  <link rel="stylesheet" href="studentPortal.css">
+  <link rel="stylesheet" href="/stylesheets/studentPortal.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/javascripts/studentPortal.js"></script>
 </head>
 <body>
 
@@ -22,7 +23,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> "Student Name"</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+        <li><a href="#" onclick="signOutFunc(event)"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
       </ul>
     </div>
   </nav>
