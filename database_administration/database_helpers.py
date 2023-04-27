@@ -40,6 +40,7 @@ def create_main_tables():
     curr.execute(createUsers)
     curr.execute(createMatchings)
 
+create_main_tables()
 # ------------------------------------------------------------------------------------------------------
 
 def delete_test_tables():
@@ -82,17 +83,12 @@ def fill_dummy_values():
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername')")
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername2')")   
 
-delete_test_tables()
-create_test_tables()
-fill_dummy_values()
-
-# ------------------------------------------------------------------------------------------------------
-
 #retrieve (print) any main or _test table:
 def printTable(tableName):
     curr.execute('SELECT * FROM ' + tableName + ';')
     res = curr.fetchall()
     print(res)
+
 
 
 def delete_test_tables():
@@ -142,8 +138,6 @@ def printTable(tableName):
     curr.execute('SELECT * FROM ' + tableName + ';')
     res = curr.fetchall()
     print(res)
-
-
 
 # #FUNCTIONS possibly
 
