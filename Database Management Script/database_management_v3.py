@@ -82,9 +82,8 @@ def fill_dummy_values():
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername')")
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername2')")   
 
-delete_test_tables()
-create_test_tables()
-fill_dummy_values()
+delete_main_tables()
+create_main_tables()
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -96,6 +95,6 @@ def printTable(tableName):
 
 
 #example:
-printTable('Users')
+#printTable('Users')
 
 # ------------------------------------------------------------------------------------------------------

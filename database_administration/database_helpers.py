@@ -11,10 +11,10 @@ conn.autocommit = True
 
 # ------------------------------------------------------------------------------------------------------
 
-# curr.execute("""SELECT * FROM information_schema.tables
-#        WHERE table_schema = 'public'""")
-# for table in curr.fetchall():
-#     print(table)
+curr.execute("""SELECT * FROM information_schema.tables
+       WHERE table_schema = 'public'""")
+for table in curr.fetchall():
+    print(table)
 
 #SQL query strings to create tables:
 createApplications = "CREATE TABLE Applications(username varchar(50), firstName varchar(50), lastName varChar(50), year varchar(10), gpa float, grade320 char, reference varchar(200), attachment varchar(100));"
@@ -40,6 +40,7 @@ def create_main_tables():
     curr.execute(createUsers)
     curr.execute(createMatchings)
 
+create_main_tables()
 # ------------------------------------------------------------------------------------------------------
 
 def delete_test_tables():
@@ -82,19 +83,12 @@ def fill_dummy_values():
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername')")
     curr.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername2')")   
 
-delete_test_tables()
-create_test_tables()
-fill_dummy_values()
-
 #retrieve (print) any main or _test table:
 def printTable(tableName):
     curr.execute('SELECT * FROM ' + tableName + ';')
     res = curr.fetchall()
     print(res)
 
-
-#example:
-printTable('Users')
 
 # #FUNCTIONS possibly
 

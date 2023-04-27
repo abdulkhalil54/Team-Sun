@@ -1,27 +1,3 @@
-const professorCheckbox = document.querySelector('input[name="professor"]');
-const studentCheckbox = document.querySelector('input[name="student"]');
-const checkDiv = document.getElementById("checkDiv");
-
-function check() {
-  if (professorCheckbox.checked && studentCheckbox.checked) {
-      let warning = document.createElement("div");
-      warning.setAttribute("id", "warningDiv");
-      warning.innerHTML = "<h1>Please check only one checkbox!</h1>";
-      checkDiv.insertAdjacentElement("afterend",warning);
-  } 
-  else {
-    let warning = document.getElementById("warningDiv");
-      if (warning) {
-          warning.remove();
-      }
-  }
-}
-
-
-professorCheckbox.addEventListener("change", check);
-studentCheckbox.addEventListener("change", check);
-
-
 const login_button = document.querySelector('#login-button');
 
 login_button.addEventListener('click', (event) => {
@@ -34,17 +10,21 @@ login_button.addEventListener('click', (event) => {
   // Send a GET request to the server with the
   // username and password embedded in the request URL 
   // to check if the user is authenticated
-  fetch(`/login/${username}/${password}`, {
-    method: 'GET'
+  fetch(`/login`, {
+    method: 'POST',
+    body: JSON.stringify({username, password}),
+    headers: { 'Content-Type': 'application/json' }
   })
-  .then(response => {
-    if (response.ok) {
-      // User authenticated, redirect to a different page
-      //window.location.href = '../views/applicationForm.html';
-      console.log(response);
-    } else {
-      // Authentication failed, show an error message
-      alert('Invalid username or password');
+  .then(res => {
+    console.log(res);
+    if (res.redirected) {
+      window.location.replace(res.url);
+    }
+    const errorMessageElement = document.querySelector('#errorMessage')
+    if (res.status === 404) {
+      res.json().then(result =>{
+        errorMessageElement.innerHTML = result.message
+      })
     }
   })
   .catch(error => {
@@ -56,30 +36,5 @@ const register_button = document.querySelector('#register-button');
 
 register_button.addEventListener('click', (event) => {
   event.preventDefault();
-
-  // Retrieve the username and password from the form submission
-  const username = document.querySelector('#username').value;
-  const password = document.querySelector('#password').value;
-
-  console.log(username, password);
-  
-  // Send a POST request to the server to check if the user is authenticated
-  fetch('/register', {
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(response => {
-    if (response.ok) {
-      // User authenticated, redirect to a different page
-      //window.location.href = '../views/applicationForm.html';
-      console.log("SUCCESSFUL REGISTRATION");
-    } else {
-      // Authentication failed, show an error message
-      alert('Invalid username or password');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  window.location.replace("../register")
 });
