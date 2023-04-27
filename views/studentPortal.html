@@ -69,12 +69,14 @@
           </tr>
         </tbody>
     </table>
-    <p id="test"></p>
+    <div class="popup">
+      <span class = "popuptxt" id = "test"> This is an example popup </span>
+    </div>
     
   </div>
 
   <div>
-    <button type="button" class= "button" onclick="helpButton()">
+    <button id= "help" type="button" class= "button" onclick="helpButton()" value = "0">
         <span class = "button__icon">
             <ion-icon name="help-circle-outline"></ion-icon>
         </span>
@@ -84,7 +86,17 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
     function helpButton(){
-      document.getElementById("test").innerHTML = "This is help incase you need instructions:";
+      // var button = document.getElementById("help");
+      // if(button.value == "0"){
+      //   document.getElementById("test").innerHTML = "This is help incase you need instructions:";
+      //   button.value = "1";
+      // }
+      // else{
+      //   button.value = "0";
+      //   document.getElementById("test").innerHTML = "";
+      // }
+      var popup = document.getElementById("test");
+      popup.classList.toggle("show");
     }
   </script>
 </body>
