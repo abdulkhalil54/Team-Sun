@@ -20,3 +20,22 @@ function signOutFunc(event){
         console.error('Error:', error);
     });
 }
+
+function newApplication(event){
+    event.preventDefault();
+    fetch('/application', {
+        method: 'GET',
+    })
+    .then(res => {
+        console.log(res);
+        if(res.redirected) {
+            console.log("SHOULD NOT HAPPEN");
+            window.location.replace(res.url);
+        }
+        if (!res.ok) {
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
