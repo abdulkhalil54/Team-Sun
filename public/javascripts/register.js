@@ -59,22 +59,21 @@ register_button.addEventListener('click', (event) => {
             // Send a POST request to the server to check if the user is authenticated
         fetch('/register', {
             method: 'POST',
-            body: JSON.stringify({ username, password, firstName, lastName, role}),
+            body: JSON.stringify({ username, password, firstName, lastName, "type": role}),
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => {
-            if (response.ok) {
-              // User authenticated, redirect to a different page
-              //window.location.href = '../views/applicationForm.html';
-              console.log("SUCCESSFUL REGISTRATION");
-            }else if(response.status === 409) {
-              alert('Username already exists');
-            }else if(response.status === 400){
-              alert('Error giving your data to the server, try inputing something else?');
-            }else{
-              alert(`Recieved status code: ${response.status}`);
+        .then(res => {
+            console.log(res);
+            const errorMessageElement = document.querySelector('#errorMessage')
+            if(res.redirected) {
+                window.location.replace(res.url);
             }
-          })
+            if (!res.ok) {
+                res.json().then(result =>{
+                    errorMessageElement.innerHTML = result.message
+                })
+            }
+        })
         .catch(error => {
             console.error('Error:', error);
         });
