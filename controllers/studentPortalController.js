@@ -6,7 +6,11 @@ const path = require("path")
 //@access Public
 
 const studentPageGet = asyncHandler(async (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "views", "studentPortal.html"));
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, "..", "views", "studentPortal.html"));
+    } else {
+        res.redirect("/login");
+    }
 })
 
 const studentPagePost = asyncHandler(async (req, res) => {
