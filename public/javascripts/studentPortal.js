@@ -23,7 +23,7 @@ function signOutFunc(event){
 
 function newApplicationButton(event){
     event.preventDefault();
-    fetch('/application', {
+    fetch('/gotoapplication', {
         method: 'GET',
     })
     .then(res => {
