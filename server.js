@@ -34,6 +34,12 @@ app.get('/logout', function(req, res){
   res.redirect('/login');
 });
 
+
+app.use('/application', require('./routes/applicationRoutes'));
+
+app.use('/gotoapplication', require('./routes/gotoapplicationRoutes'));
+
+
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 })
