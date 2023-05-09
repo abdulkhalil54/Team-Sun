@@ -58,6 +58,27 @@
 .navBarItem{
     font-size: 17px;
 }
+.submit{
+    display:flex;
+    justify-content: center;
+    background-color: rgb(128, 235, 128);
+    color: black;
+    font-size: large;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(195, 130, 140);
+    cursor: pointer;
+    width: 100%;
+}
+/* Add a hover effect for buttons */
+.submit:hover {
+    opacity: 0.8;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+    }
 .table-hover{
     
 }
