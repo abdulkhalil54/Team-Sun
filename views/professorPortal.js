@@ -3,7 +3,7 @@ const professorName = document.getElementById("professorName");
 
 
 async function render(){
-    const res = await fetch("testData.json");
+    const res = await fetch("profPortalData.json");
     // const res = await fetch('api/portal/professor');
     if(res.ok){
         const data = await res.json();
