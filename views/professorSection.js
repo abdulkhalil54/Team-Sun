@@ -8,9 +8,11 @@ async function render(){
     if(res.ok){
         const data = await res.json();
         console.log(data)
+        console.log(`${data.firstName} ${data.lastName}`)
         professorName.innerText = `${data.firstName} ${data.lastName}`;
+        titleDiv.innerHTML = `<h1> Section ${data.section} </h1>`;
          //order of rows is section number, count
-        for(let i = 0; i < data.applications.length; i++){
+        for(let i = 0; i < data.students.length; i++){
             /*
                 <tr>
                     <th scope = "row" class = "top"> <input type="number" name="num" min="1" max="20"><br> </th>
@@ -42,27 +44,47 @@ async function render(){
             status.setAttribute("scope", "row");
             application.setAttribute("scope", "row");
 
-            sectionNumber.innerText = data.applications[i].sectionID;
-            sectionCount.innerText = `${data.applications[i].application_num} Applications`;
-            row.appendChild(sectionNumber);
-            row.appendChild(sectionCount);
+            studentName.innerText = `${data.students[i].firstName} ${data.students[i].lastName}`;
+
+            if(data.students[i].status === 0){
+                status.classList.add("pending");
+                status.innerText = "Pending";
+            }else if(data.students[i].status === 1){
+                status.classList.add("accepted");
+                status.innerText = "Accepted";
+            }else if(data.students[i].status === -1){
+                status.classList.add("declined");
+                status.innerText = "Declined";
+            }
+
+            const applicationLink = document.createElement("a");
+            applicationLink.innerText = "Application";
+
+            applicationLink.addEventListener("click", async () => {
+                const username = data.students[i].username; // Retrieve the username from your data source
+
+                try {
+                    const response = await fetch(`api/redirect/application/view/${username}`);
+                    if (response.ok) {
+                    // Handle the successful response
+                    console.log("Fetch request successful");
+                    } else {
+                    // Handle the error response
+                    console.log("Error: Fetch request failed");
+                    }
+                } catch (error) {
+                    // Handle any network or fetch-related errors
+                    console.log("Error: Fetch request failed", error);
+                }
+            });
+            application.appendChild(applicationLink);
+
+            row.appendChild(preference);
+            row.appendChild(studentName);
+            row.appendChild(status);
+            row.appendChild(application);
             applicationsDiv.appendChild(row);
         }
-        // Get all table rows in the sections table
-        const tableRows = document.querySelectorAll("#sections tr");
-        // Loop through each table row and add a click event listener
-        tableRows.forEach(row => {
-            row.addEventListener("click", async () => {
-                // Get the section ID from the first cell in the row
-                const sectionID = row.cells[0].innerText;
-
-                // Construct the URL for the new page using the section ID
-                const url = `api/redirect/portal/professor/section/${sectionID}`;
-                await fetch(url);
-                // Navigate to the new page
-                window.location.href = url;
-            });
-        });
     }
     else{
         console.log(`Error: ${res.status}`);
