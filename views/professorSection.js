@@ -1,6 +1,7 @@
 const titleDiv = document.getElementById("title");
 const professorName = document.getElementById("professorName");
 const applicationsDiv = document.getElementById("applications");
+const submitButton = document.getElementById("submit");
 
 async function render(){
     const res = await fetch("profSectionData.json");
@@ -11,6 +12,12 @@ async function render(){
         console.log(`${data.firstName} ${data.lastName}`)
         professorName.innerText = `${data.firstName} ${data.lastName}`;
         titleDiv.innerHTML = `<h1> Section ${data.section} </h1>`;
+        if(data.students.length === 0){
+            submitButton.disabled = true;
+        }
+        else{
+            submitButton.disabled = false;
+        }
          //order of rows is section number, count
         for(let i = 0; i < data.students.length; i++){
             /*
@@ -45,7 +52,9 @@ async function render(){
             application.setAttribute("scope", "row");
 
             studentName.innerText = `${data.students[i].firstName} ${data.students[i].lastName}`;
-
+            const username = data.students[i].username; // Retrieve the username from your data source
+            studentName.setAttribute("data-username", username);
+            
             if(data.students[i].status === 0){
                 status.classList.add("pending");
                 status.innerText = "Pending";
@@ -93,4 +102,39 @@ async function render(){
 //this renders all the necessary information on the page before the user can interact with it
 document.addEventListener("DOMContentLoaded", () => {
     render();
+});
+
+
+submitButton.addEventListener("click", async () => {
+    const tbody = document.getElementById("applications");
+    const rows = tbody.querySelectorAll("tr");
+    let preferences = [];
+    const preferenceCount = {}; // Object to keep track of preference counts
+    for (let i = 0; i < rows.length; i++) {
+        const input = rows[i].querySelector("input[name='num']");
+        const preferenceValue = parseInt(input.value);
+
+        if (!preferenceValue || preferenceValue < 1) { //this checks if the pref value is valid
+            alert(`Please enter a valid preference for ${rows[i].querySelector("th:nth-child(2)").innerText}`);
+            preferences = [];
+            break;
+
+        }else if( preferenceValue > rows.length){ //this checks if the pref value is valid for the range 1 - rows.length
+            alert(`Please enter a valid preference in the range of 1-${rows.length} for ${rows[i].querySelector("th:nth-child(2)").innerText}`);
+            preferences = [];
+            break;
+
+        }else if (preferenceCount[preferenceValue]) { //this checks if the pref value has already been used
+            alert(`You used the preference ${preferenceValue} more than once`);
+            preferences = [];
+            break;
+
+        } else {
+            preferenceCount[preferenceValue] = 1;
+            const studentName = rows[i].querySelector("th:nth-child(2)").innerText;
+            const username = rows[i].querySelector("th:nth-child(2)").getAttribute("data-username");
+            preferences.push({username: username, studentName: studentName, preference: preferenceValue})
+        }
+    }
+    console.log(preferences);
 });

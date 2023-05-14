@@ -58,7 +58,7 @@
 .navBarItem{
     font-size: 17px;
 }
-.submit{
+#submit{
     display:flex;
     justify-content: center;
     background-color: rgb(128, 235, 128);
@@ -71,8 +71,14 @@
     width: 100%;
 }
 /* Add a hover effect for buttons */
-.submit:hover {
+#submit:hover {
     opacity: 0.8;
+}
+#submit:disabled {
+    /* Define the styles for the disabled button */
+    opacity: 0.5; /* Reduce the opacity to indicate it's disabled */
+    cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+    /* Add any other desired styles */
 }
 .my-custom-scrollbar {
     position: relative;
