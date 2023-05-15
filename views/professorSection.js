@@ -2,7 +2,7 @@ const titleDiv = document.getElementById("title");
 const professorName = document.getElementById("professorName");
 const applicationsDiv = document.getElementById("applications");
 const submitButton = document.getElementById("submit");
-
+const sectionID = {};
 async function render(){
     const res = await fetch("profSectionData.json");
     // const res = await fetch('api/portal/professor');
@@ -12,6 +12,7 @@ async function render(){
         console.log(`${data.firstName} ${data.lastName}`)
         professorName.innerText = `${data.firstName} ${data.lastName}`;
         titleDiv.innerHTML = `<h1> Section ${data.section} </h1>`;
+        sectionID.section = data.section;
         if(data.students.length === 0){
             submitButton.disabled = true;
         }
@@ -131,10 +132,19 @@ submitButton.addEventListener("click", async () => {
 
         } else {
             preferenceCount[preferenceValue] = 1;
-            const studentName = rows[i].querySelector("th:nth-child(2)").innerText;
             const username = rows[i].querySelector("th:nth-child(2)").getAttribute("data-username");
-            preferences.push({username: username, studentName: studentName, preference: preferenceValue})
+            preferences.push({username: username, preference: preferenceValue});
         }
     }
-    console.log(preferences);
+    console.log(JSON.stringify(preferences));
+    if(preferences.length > 0){
+        const url = `/api/portal/professor/section/${sectionID.section}`;
+        fetch(url,{
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+            }, 
+            body: JSON.stringify(preferences),
+        });
+    }
 });
