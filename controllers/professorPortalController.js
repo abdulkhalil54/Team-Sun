@@ -41,7 +41,12 @@ const apiProfessorPortal = asyncHandler(async (req, res) => {
     }
 });
 
+const redirectProfessorPortalSection = asyncHandler(async (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "views", "professorSection.html"));
+});
+
 module.exports = {
     professorPageGet,
-    apiProfessorPortal
+    apiProfessorPortal,
+    redirectProfessorPortalSection
 }

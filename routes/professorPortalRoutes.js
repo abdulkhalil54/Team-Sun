@@ -9,4 +9,7 @@ router.route("/portal/professor")
 router.route("/api/portal/professor")
     .get(professorPortalController.apiProfessorPortal);
 
+router.route("/portal/professor/section/:id")
+    .get(professorPortalController.redirectProfessorPortalSection);
+
 module.exports = router;
