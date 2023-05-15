@@ -49,7 +49,7 @@ app.get('/logout', function(req, res){
 });
 
 
-//To go to and render the applcaiiton submission page
+//To go to and render the application submission page
 app.get('/api/redirect/application/submit', (req, res, next) => {
   res.redirect("/application/submit");
 });
@@ -59,7 +59,11 @@ app.use('/application/submit', (req, res, next) => {
 
 app.use('/api/application/submit', upload.single('fileAttachment'), require('./routes/applicationSubmitRoutes'));
 
+const professorSectionRouter = require('./routes/professorRoutes'); 
+app.use('/api/portal/professor/section', professorSectionRouter);
 
+const profPortalViewsRouter = require('./routes/profPortalViewsRoutes');
+app.use('/api/redirect/application/view', profPortalViewsRouter);
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
