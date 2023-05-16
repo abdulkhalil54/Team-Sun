@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementsByName('section3_time'),
       document.getElementsByName('section4_time'),
     ];
-    //Function to validate Time preferences are all selected
+    //Function to validate Time preferences are all selectedgit 
     function validateTimePreferences() {
       for (const radioGroup of sectionRadioGroups) {
         let isChecked = false;
@@ -53,15 +53,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
       //Create new form data
       const formData = new FormData(form);
+
+      console.log(formData)
+      console.log(form)
   
       try {
-        const response = await fetch('/submit', {
+        const response = await fetch('http://localhost:3000/api/application/submit', {
           method: 'POST',
           body: formData,
         });
   
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response}`);
         }
   
         // Process the response, for example, by redirecting or displaying a success message

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
-  <link rel="stylesheet" href="/public/stylesheets/applicationForm.css">
-  <script src="javascripts/applicationSubmit.js" type="module" defer></script>
+  <link rel="stylesheet" href="/stylesheets/applicationForm.css">
+  <script src="/javascripts/applicationSubmit.js" type="module" defer></script>
 </head>
 <body>
   <div class="container">
     <h1>429 Manager Application Form</h1>
-    <form id="applicationForm">
+    <form id="applicationForm" enctype="multipart/form-data">
       <!-- <form action="/submit" method="POST" enctype="multipart/form-data"></form> -->
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
