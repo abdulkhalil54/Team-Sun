@@ -54,7 +54,7 @@ app.get('/api/redirect/application/submit', (req, res, next) => {
   res.redirect("/application/submit");
 });
 app.use('/application/submit', (req, res, next) => {
-  res.sendFile(path.join("..", "views", "applicationSubmit.html"));
+  res.sendFile(path.join(__dirname, "views", "applicationSubmit.html"));
 });
 
 app.use('/api/application/submit', upload.single('fileAttachment'), require('./routes/applicationSubmitRoutes'));

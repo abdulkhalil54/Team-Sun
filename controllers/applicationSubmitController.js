@@ -31,8 +31,9 @@ const submitApplication = asyncHandler(async (req, res) => {
     }
     });
 
-    //const {firstName, lastName, year, reference1_name, reference1_contact, grade,section1_time, section2_time, section3_time, section4_time} = req.body
+    const {firstName, lastName, year, reference1_name, reference1_contact, grade,section1_time, section2_time, section3_time, section4_time} = req.body
 
+    console.log(req.body)
     //await db.none("INSERT INTO Student(username, conflict, ranking, sectionRanked)")
 
 })
