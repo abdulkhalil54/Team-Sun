@@ -17,12 +17,12 @@ const registerPage = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
     console.log(req.body)
-    const {username, password, firstName, lastName, type} =  req.body
+    const {username, password, firstName, lastName, type, email} =  req.body
     //Hash the password, so that passwords cannot be stolen from the database
     const hashedPassword = await bcrypt.hash(password, 10) // 10 = salting
 
     //try to insert the username and password
-    await db.none('INSERT INTO Users(username, password, type, firstName, lastName) VALUES ($1, $2, $3, $4, $5)', [username, hashedPassword, type, firstName, lastName])
+    await db.none('INSERT INTO Users(username, password, type, firstName, lastName, email) VALUES ($1, $2, $3, $4, $5, $6)', [username, hashedPassword, type, firstName, lastName, email])
         .then((data) => {
             console.log("SUCCESS: Successful registration");
             let newUser = {username, type}
