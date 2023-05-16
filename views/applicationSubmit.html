@@ -10,7 +10,7 @@
 <body>
   <div class="container">
     <h1>429 Manager Application Form</h1>
-    <form id="applicationForm">
+    <form id="applicationForm" enctype="multipart/form-data">
       <!-- <form action="/submit" method="POST" enctype="multipart/form-data"></form> -->
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
@@ -88,13 +88,8 @@
       <label for="fileAttachment">Resume:</label>
       <input type="file" id="fileAttachment" name="fileAttachment">
       <span id="timePreferenceError" class="error-message" style="display: none;">Please select a time preference for at least one section.</span>
-<<<<<<< HEAD
       <span id="fileAttachmentError" class="error-message" style="display: none;">Please attach a file.</span>
       <center><button type="submit" id="submitBtn">Submit</button></center>
-=======
-       <span id="fileAttachmentError" class="error-message" style="display: none;">Please attach a file.</span>
-       <center><button type="submit" id="submitBtn">Submit</button></center>
->>>>>>> 5df012b (trying to test applciaiton)
     </form>
    </div>
 </body>

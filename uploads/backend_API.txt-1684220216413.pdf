@@ -1,0 +1,60 @@
+#TODO
+For the frontend team.
+
+ENDPOINTS:
+
+Endpoint: Contact form
+URL: /contactus/:name/:email
+method: POST
+headers: { 'Content-Type': 'application/json' }
+body: 
+    Request body constraints: {
+        text: "2000 Unicode characters MAX"
+    }
+Response:
+1. 200 Success: if contact us form has been successfully stored on the database
+        Response data constraints:{
+            "message": "Successful retrieval"
+        }
+3. 409 Not found: if the text to be displayed on the about us page is not available
+        Response data constraints:{
+            "message": "ERROR: Username does not exist"
+        }
+
+Endpoint: Get member list
+
+URL: /api/v1/meettheteam/memberlist
+method: GET
+Body: NONE
+Response:
+1. 200 Success: if the member list is available for retrieval
+        Response data constraints:{
+                "team": [{
+                    "title": "[50 Unicode characters MAX]",
+                    "firstName": "[50 Unicode characters MAX]",
+                    "lastName": "[50 Unicode characters MAX]",
+                    "photo_id": "[12 bytes MAX]"
+                },
+            ]
+            "message": "SUCCESS: Successful member list retrieval" 
+        }
+2. 404 Not found: if the member list is not available for retrieval
+        Response data constraints:{
+            "message": "ERROR: member list not available" 
+        }
+
+Endpoint: Meet the team photo retrieval
+URL: /api/v1/meettheteam/memberphotos
+method: GET
+Body: NONE
+Response:
+1. 200 Success: if the photos are available
+        Response data constraints:[{
+            "image_id": "[12 bytes MAX]"
+            "image": Image file
+            }
+        ]
+2. 404 Not found: if the photos are available
+        Response data constraints:{
+            "message": "ERROR: photos are not available" 
+        }
