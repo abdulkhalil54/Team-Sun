@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementsByName('section3_time'),
       document.getElementsByName('section4_time'),
     ];
-    //Function to validate Time preferences are all selected
+    //Function to validate Time preferences are all selectedgit 
     function validateTimePreferences() {
       for (const radioGroup of sectionRadioGroups) {
         let isChecked = false;
