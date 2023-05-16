@@ -65,8 +65,14 @@ app.get('/logout', function(req, res){
   res.redirect('/login');
 });
 
+<<<<<<< HEAD
 //To go to and render the applcaiiton submission page
 app.get('/api/redirect/application/submit', (req, res) => {
+=======
+
+//To go to and render the application submission page
+app.get('/api/redirect/application/submit', (req, res, next) => {
+>>>>>>> lucy
   res.redirect("/application/submit");
 });
 
@@ -123,6 +129,11 @@ app.get('/api/redirect/portal/professor/section/:id', (req, res, next) => {
 //@route GET /portal/professor/section/:id
 //endpoint 52
 app.get('/portal/professor/section/:id', require("./routes/professorPortalSectionRoutes"));
+const professorSectionRouter = require('./routes/professorRoutes'); 
+app.use('/api/portal/professor/section', professorSectionRouter);
+
+const profPortalViewsRouter = require('./routes/profPortalViewsRoutes');
+app.use('/api/redirect/application/view', profPortalViewsRouter);
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
