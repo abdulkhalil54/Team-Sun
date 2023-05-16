@@ -87,7 +87,9 @@
 </table>
       <label for="fileAttachment">Resume:</label>
       <input type="file" id="fileAttachment" name="fileAttachment">
-      <center><button type="submit">Submit</button></center>
+      <span id="timePreferenceError" class="error-message" style="display: none;">Please select a time preference for at least one section.</span>
+      <span id="fileAttachmentError" class="error-message" style="display: none;">Please attach a file.</span>
+      <center><button type="submit" id="submitBtn">Submit</button></center>
     </form>
    </div>
 </body>
