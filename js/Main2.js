@@ -421,7 +421,7 @@ let sec6 = new Section(6, "M", 12, "MR", 3, 0, 6, ["abdul", "brian", "chinguun",
 
 let sections = [sec1, sec2, sec3, sec4, sec5, sec6];
 
-let match = createMatching(students, sections);*/
+let match = createMatching(students, sections);
 
 let app1 = new Application("Segev", 2024, 4.0, "Junior", "references", 2);
 let stud1 = new Student("segev5115", "passw0rd", "Student", [5, 6], [1, 2, 3, 4], app1);
@@ -461,6 +461,6 @@ let sec3 = new Section(3, "T", 1, "R", 1, 0, 3, ["abdul"]);
 let sec4 = new Section(4, "W", 1, "JD", 1, 0, 4, ["brian"]);
 
 let match = createMatching([stud1, stud2, stud3, stud4], [sec1, sec2, sec3, sec4]);
-*/
 
-console.log(match);
+
+console.log(match);*/
