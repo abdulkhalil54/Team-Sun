@@ -35,12 +35,12 @@ async function render(){
 
                 sectionTime.setAttribute("scope","row");
                 status.setAttribute("scope","row");
-                timeList = [
+                let timeList = [
                     "LEC: T/Th 2:30 - 3:45pm; DIS: W 10:00 - 11:00am",
                     "LEC: M/W 2:30 - 3:45pm; DIS: W 12:20 - 1:10pm",
                     "LEC: T/Th 4:00 - 5:15pm; DIS: W 11:15 - 12:05pm",
                     "LEC: T/Th 8:30 - 9:45am; DIS: W 11:15 - 12:05pm"
-                ]
+                ];
                 sectionTime.innerText = timeList[parseInt(data.preferences[i].sectionID)- 1];
 
                 Professor.innerText = "test";
@@ -59,8 +59,8 @@ async function render(){
             console.log(`Error: ${res.status}`);
         }
     }
-    catch{
-        console.log(`Error: ${res.status}`);
+    catch(e){
+        console.log(`Error: ${e}`);
     }
 }
 
