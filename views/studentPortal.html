@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Portal</title>
-  <link rel="stylesheet" href="/stylesheets/studentPortal.css">
+  <link rel="stylesheet" href="studentPortal.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="/javascripts/studentPortal.js"></script>
+  <script src="studentPortal.js" type="module" defer></script>
 </head>
 <body>
 
@@ -18,11 +18,14 @@
         <a class="navbar-brand" href="#"> <img src = "home.png" style="max-width: 100%; max-height: 100%;"></a>
       </div>
       <ul class="nav navbar-nav">
-        <li class = "navBarItem"><a href="#">New Application</a></li>
-        <li class = "navBarItem"><a href="#">Edit Application</a></li>
+        <li class = "navBarItem"><a href="#" onclick = "newApplication(event)">New Application</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> "Student Name"</a></li>
+        <li><a href="#">
+          <span class="glyphicon glyphicon-user"></span>
+          <span id = "studentname"> "Student Name"</span>
+        </a></li>
+
         <li><a href="#" onclick="signOutFunc(event)"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
       </ul>
     </div>
@@ -39,39 +42,41 @@
                 <th scope="col">Contact</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id = "body">
+        </tbody>
+        <!-- <tbody>
             <tr>
                 <th scope ="row"> 01 </th>
                 <td> LEC: T/Th 2:30 - 3:45pm; DIS: W 10:00 - 11:00am</td>
                 <td> Matthew Rattigan</td>
-                <td> Action Required </td>
+                <td id="status-01"> Pending </td>
                 <td> mrattigan@umass.edu </td>
             </tr>
             <tr>
                 <th scope = "row"> 02 </th>
                 <td> LEC: T/Th 2:30 - 3:45pm; DIS: W 10:00 - 11:00am</td>
                 <td> Matthew Rattigan</td>
-                <td> Action Required </td>
+                <td id="status-02"> Accepted </td>
                 <td> mrattigan@umass.edu </td>
             </tr>
             <tr>
               <th scope = "row"> 03 </th>
               <td> LEC: T/Th 2:30 - 3:45pm; DIS: W 10:00 - 11:00am</td>
               <td> Matthew Rattigan</td>
-              <td> Action Required </td>
+              <td id="status-03"> Accepted </td>
               <td> mrattigan@umass.edu </td>
             </tr>
             <tr>
               <th scope = "row"> 04 </th>
               <td> LEC: T/Th 2:30 - 3:45pm; DIS: W 10:00 - 11:00am</td>
               <td> Matthew Rattigan</td>
-              <td> Action Required </td>
+              <td id="status-04"> Rejected </td>
               <td> mrattigan@umass.edu </td>
           </tr>
-        </tbody>
+        </tbody> -->
     </table>
     <div class="popup">
-      <span class = "popuptxt" id = "test"> This is an example popup </span>
+      <span class = "popuptxt" id = "test"> If any changes needs to be made, please resubmit a new application using the "New Application" button</span>
     </div>
     
   </div>
@@ -99,6 +104,14 @@
       var popup = document.getElementById("test");
       popup.classList.toggle("show");
     }
+    // function populateStatus(){
+    //   var status1 = document.getElementById("status-01");
+    //   var status2 = document.getElementById("status-02");
+    //   var status3 = document.getElementById("status-03");
+    //   var status4 = document.getElementById("status-04");
+    //   //api to get status of section 1
+    //   status1.innerHTML = getStatus(section1);
+    // }
   </script>
 </body>
 </html>
