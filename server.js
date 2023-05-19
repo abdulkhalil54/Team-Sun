@@ -59,11 +59,10 @@ app.post('/portal/student', require("./routes/studentPortalRoutes"));
 
 //if the user is loggin out, destroy the session and redirect to login
 app.get('/logout', function(req, res){
-  console.log("PLS");
   req.session.destroy(function(){
      console.log("user logged out.")
   });
-  res.redirect('/login');
+  res.json({ success: true });
 });
 
 //To go to and render the applcaiiton submission page

@@ -3,6 +3,23 @@ const professorName = document.getElementById("professorName");
 const applicationsDiv = document.getElementById("applications");
 const submitButton = document.getElementById("submit");
 const sectionID = {};
+
+function signOutFunc(event){
+    event.preventDefault();
+    fetch('/logout', {
+        method: 'GET',
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/login";
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 async function render(){
     const res = await fetch("profSectionData.json");
     // const res = await fetch('api/portal/professor');
@@ -103,6 +120,8 @@ async function render(){
 //this renders all the necessary information on the page before the user can interact with it
 document.addEventListener("DOMContentLoaded", () => {
     render();
+    const sign = document.getElementById("signoutbutton");
+    sign.addEventListener("click", signOutFunc);
 });
 
 

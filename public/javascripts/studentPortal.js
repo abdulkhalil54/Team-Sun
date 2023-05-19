@@ -3,8 +3,11 @@ function signOutFunc(event){
     fetch('/logout', {
         method: 'GET',
     })
-    .then(res => {
-        console.log(res);
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/login";
+        }
     })
     .catch(error => {
         console.error('Error:', error);
@@ -86,6 +89,5 @@ async function render(){
 document.addEventListener("DOMContentLoaded", () => {
     render();
     const sign = document.getElementById("signoutbutton");
-    console.log(sign);
-    sign.addEventListener("onClick", signOutFunc);
+    sign.addEventListener("click", signOutFunc);
 });

@@ -3,8 +3,8 @@ const professorName = document.getElementById("professorName");
 
 
 async function render(){
-    //const res = await fetch("/javascripts/profPortalData.json");
-    const res = await fetch('/api/portal/professor', {method: 'GET'});
+    const res = await fetch("/javascripts/profPortalData.json");
+    // const res = await fetch('/api/portal/professor', {method: 'GET'});
     if(res.ok){
         const data = await res.json();
         console.log(data)
@@ -54,8 +54,11 @@ function signOutFunc(event){
     fetch('/logout', {
         method: 'GET',
     })
-    .then(res => {
-        console.log(res);
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/login";
+        }
     })
     .catch(error => {
         console.error('Error:', error);
@@ -65,4 +68,6 @@ function signOutFunc(event){
 //this renders all the necessary information on the page before the user can interact with it
 document.addEventListener("DOMContentLoaded", () => {
     render();
+    const sign = document.getElementById("signoutbutton");
+    sign.addEventListener("click", signOutFunc);
 });

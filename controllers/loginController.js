@@ -8,7 +8,7 @@ const path = require("path")
 //@access Public
 const loginPage = asyncHandler(async (req, res) => {
     res.sendFile(path.join(__dirname, "..", "views", "login.html"));
-})
+});
 
 //@desc Login user
 //@route POST /login
