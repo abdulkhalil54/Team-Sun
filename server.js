@@ -59,20 +59,15 @@ app.post('/portal/student', require("./routes/studentPortalRoutes"));
 
 //if the user is loggin out, destroy the session and redirect to login
 app.get('/logout', function(req, res){
+  console.log("PLS");
   req.session.destroy(function(){
      console.log("user logged out.")
   });
   res.redirect('/login');
 });
 
-<<<<<<< HEAD
 //To go to and render the applcaiiton submission page
 app.get('/api/redirect/application/submit', (req, res) => {
-=======
-
-//To go to and render the application submission page
-app.get('/api/redirect/application/submit', (req, res, next) => {
->>>>>>> lucy
   res.redirect("/application/submit");
 });
 
@@ -118,6 +113,14 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
 
 });
 
+//rendering the professor portal, endpoints #41 #42
+app.get("/portal/professor", require("./routes/professorPortalRoutes"));
+
+app.get("/api/portal/professor", require("./routes/professorPortalRoutes"));
+
+//Professor's view of a section
+app.use("/portal/professor/section/:id", require("./routes/professorPortalRoutes"));
+
 //@desc professor portal
 //@route GET /api/redirect/portal/professor/section/:id
 //endpoint 51
@@ -125,15 +128,15 @@ app.get('/api/redirect/portal/professor/section/:id', (req, res, next) => {
   res.redirect("/portal/professor/section/" + req.params.id);
 });
 
-//@desc professor portal
-//@route GET /portal/professor/section/:id
-//endpoint 52
-app.get('/portal/professor/section/:id', require("./routes/professorPortalSectionRoutes"));
-const professorSectionRouter = require('./routes/professorRoutes'); 
-app.use('/api/portal/professor/section', professorSectionRouter);
+// //@desc professor portal
+// //@route GET /portal/professor/section/:id
+// //endpoint 52
+// app.get('/portal/professor/section/:id', require("./routes/professorPortalSectionRoutes"));
+// const professorSectionRouter = require('./routes/professorRoutes'); 
+// app.use('/api/portal/professor/section', professorSectionRouter);
 
-const profPortalViewsRouter = require('./routes/profPortalViewsRoutes');
-app.use('/api/redirect/application/view', profPortalViewsRouter);
+// const profPortalViewsRouter = require('./routes/profPortalViewsRoutes');
+// app.use('/api/redirect/application/view', profPortalViewsRouter);
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");

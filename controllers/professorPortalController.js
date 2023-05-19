@@ -11,25 +11,26 @@ const professorPageGet = asyncHandler(async (req, res) => {
 })
 
 //@desc professor portal
-//@route GET api/portal/professor
+//@route GET /api/portal/professor
 //@access Public
 //endpoint 42
 const apiProfessorPortal = asyncHandler(async (req, res) => {
+    console.log(req.session.user);
     if(req.session.user) {
         if(req.session.user.type) {
             //Wait to retreive the correct password 
             let username = req.session.user.username;
             try{
-                const firstName = await db.one('SELECT firstName FROM Users WHERE username = $1', username);
-                const lastName = await db.one('SELECT lastName FROM Users WHERE username = $1', username);
-                const sections = await db.any('SELECT DISTINCT id, numEnrolled FROM SECTIONS WHERE username = $1', username);
-                const sectionsArray = sections.map(section => {
+                const name = await db.one('SELECT firstName, lastName FROM Users WHERE username = $1', username);
+                const sectionInfo = await db.any('SELECT id, count(*) as app_count FROM Sections WHERE username = $1 GROUP BY id', username);
+                console.log(name);
+                const sectionInfoArray = sectionInfo.map(section => {
                     return {
                         id: section.id,
-                        numEnrolled: section.numEnrolled
+                        numEnrolled: section.app_count
                     };
                 });
-                res.json({firstName: firstName.firstname, lastName: lastName.lastname, sections: sectionsArray});
+                res.json({firstName: name.firstname, lastName: name.lastname, applications: sectionInfoArray});
             }catch(err){
                 console.log(err);
             }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal</title>
+  <link rel="stylesheet" href="/stylesheets/professorPortal.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src = '/javascripts/professorPortal.js' type="module" defer></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"> <img src = "home.png" style="max-width: 100%; max-height: 100%;"></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">
+          <span class="glyphicon glyphicon-user"></span>
+          <span id = "professorName"> "Professor Name"</span>
+          </a>
+        </li>
+        <li><a href="#" onclick="signOutFunc(event)"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class = "sectionsContainer">
+    <div class="sections" style = "margin-top: 50px;">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col"> <span class="top"> Section </span>  </th>
+                    <th scope="col"> <span class="top"> Count </span>   </th>
+                </tr>
+            </thead>
+            <tbody id = "sections">
+
+            </tbody>
+        </table>
+        <div class="popup">
+          <span class = "popuptxt" id = "test"> This is an example popup </span>
+        </div>
+        
+      </div>
+  </div>
+
+
+  <div>
+    <button id= "help" type="button" class= "button" onclick="helpButton()" value = "0">
+        <span class = "button__icon">
+            <ion-icon name="help-circle-outline"></ion-icon>
+        </span>
+    </button>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    function helpButton(){
+      // var button = document.getElementById("help");
+      // if(button.value == "0"){
+      //   document.getElementById("test").innerHTML = "This is help incase you need instructions:";
+      //   button.value = "1";
+      // }
+      // else{
+      //   button.value = "0";
+      //   document.getElementById("test").innerHTML = "";
+      // }
+      var popup = document.getElementById("test");
+      popup.classList.toggle("show");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "preferences":[
+        {
+            "sectionID": "1",
+            "professorfirstName": "Matt",
+            "professorlastName": "Rattigan",
+            "professorEmail": "mrattigan@umass.edu",
+            "status": "-1",
+            "preference": "2"
+        },
+        {
+            "sectionID": "2",
+            "professorfirstName": "Random",
+            "professorlastName": "Professor",
+            "professorEmail": "random@umass.edu",
+            "status": "0",
+            "preference": "1"
+        },
+        {
+            "sectionID": "3",
+            "professorfirstName": "Mysterious",
+            "professorlastName": "Professor",
+            "professorEmail": "mysterious@umass.edu",
+            "status": "1",
+            "preference": "4"
+        },
+        {
+            "sectionID": "4",
+            "professorfirstName": "My",
+            "professorlastName": "Professor",
+            "professorEmail": "myprofessor@umass.edu",
+            "status": "2",
+            "preference": "3"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "firstName": "Matt",
+    "lastName": "Rattigan",
+    "applications": [
+      {"sectionID": "01", "application_num": 12},
+      {"sectionID": "02", "application_num": 5},
+      {"sectionID": "03", "application_num": 2},
+      {"sectionID": "04", "application_num": 12}
+    ]
+  }

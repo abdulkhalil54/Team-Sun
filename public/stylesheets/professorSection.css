@@ -1,0 +1,146 @@
+.button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #fefefe;
+    margin-top: 24px;
+    font-size:22px;
+    font-size: 2em;
+    font-display: center;
+    color:white;
+    position:fixed;
+    bottom: 10px;;
+    right:10px;
+    background-color:skyblue;
+    border-radius: 50%;
+}
+.button__icon{
+    text-align: center;
+}
+.top{
+    display: flex;
+    justify-content: center;
+}
+#title{
+    display: flex;
+    justify-content: center;
+}
+.sectionsContainer{
+    display: flex;
+    justify-content: center;
+    max-height: 100vh;
+}
+.sections{
+    width: 90%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+}
+.accepted{
+    background-color: green;
+    color: white;
+}
+.pending{
+    background-color: orange;
+    color: white;
+}
+.waitlisted{
+    background-color: yellow;
+    color: black;
+}
+.declined{
+    background-color: red;
+    color: white;
+}
+.button:hover{
+    background:gray;
+}
+.navBarItem{
+    font-size: 17px;
+}
+#submit{
+    display:flex;
+    justify-content: center;
+    background-color: rgb(128, 235, 128);
+    color: black;
+    font-size: large;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(195, 130, 140);
+    cursor: pointer;
+    width: 100%;
+}
+/* Add a hover effect for buttons */
+#submit:hover {
+    opacity: 0.8;
+}
+#submit:disabled {
+    /* Define the styles for the disabled button */
+    opacity: 0.5; /* Reduce the opacity to indicate it's disabled */
+    cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+    /* Add any other desired styles */
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+    }
+.table-hover{
+    
+}
+/* Popup container */
+.popup {
+    position:fixed;
+    bottom: 80px;;
+    right:80px;
+    display: inline-block;
+    cursor: pointer;
+}
+/* table,th,td{
+    border:1px solid black;
+    border-collapse: collapse;
+} */
+  
+  /* The actual popup (appears on top) */
+.popup .popuptxt {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+  
+  /* Popup arrow */
+.popup .popuptxt::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+  /* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+  
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
