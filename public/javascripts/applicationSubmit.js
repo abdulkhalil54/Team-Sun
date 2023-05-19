@@ -74,5 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       //TODO go back to student portal
+      await fetch('/api/redirect/portal/student', {
+          method: 'GET',
+        })
+      .then((res)=>{
+        if(res.redirected)window.location.replace(res.url);
+      })
     });
   });

@@ -17,7 +17,7 @@ let storage = multer.diskStorage({
   destination: "./uploads/",
   filename: function(req, file, cb) {
     //TODO: add username to filename
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, req.session.user.username + "-" + Date.now() + "-" + file.originalname);
   }
 })
 const upload = multer({ storage: storage }) 
@@ -54,6 +54,10 @@ app.get('/register', require("./routes/registerRoutes"));
 app.post('/register', require("./routes/registerRoutes"));
 
 app.get('/portal/student', require("./routes/studentPortalRoutes"));
+
+app.get('/api/redirect/portal/student', (req, res) => {
+  res.redirect("/portal/student");
+});
 
 app.post('/portal/student', require("./routes/studentPortalRoutes"));
 
@@ -133,7 +137,7 @@ app.get("/api/portal/professor/section/:id", require("./routes/professorPortalRo
 
 
 app.get('/api/redirect/application/view/:username', (req, res, next) => {
-  res.redirect("/api/redirect/application/view/:username" + req.params.id);
+  res.redirect("/application/view/" + req.params.username);
 });
 
 app.get('/application/view/:username', require("./routes/professorPortalRoutes"));

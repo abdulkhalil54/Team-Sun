@@ -15,4 +15,10 @@ router.route("/portal/professor/section/:id")
 router.route("/api/portal/professor/section/:id")
     .get(professorPortalController.professorPortalSectionDynamic);
 
+router.route('/application/view/:username')
+    .get(professorPortalController.getApplicationView)
+
+router.route('/api/application/view/:username')
+    .get(professorPortalController.applicationViewDynamic)
+
 module.exports = router;

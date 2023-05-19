@@ -88,7 +88,7 @@ async function render(){
 
             applicationLink.addEventListener("click", async () => {
                 const username = data.students[i].username; // Retrieve the username from your data source
-
+                console.log(username);
                 try {
                     const response = await fetch(`/api/redirect/application/view/${username}`)
                     .then(res=>{

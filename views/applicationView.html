@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Form</title>
+  <link rel="stylesheet" href="/stylesheets/applicationForm.css">
+  <script src = '/javascripts/applicationView.js' type="module" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Application:</h1>
+    <form>
+      <!-- <form action="/submit" method="POST" enctype="multipart/form-data"></form> -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+  
+      <label for="year">Year:</label>
+      <input type="text" id="year" name="year" required>
+  
+      <label for="reference_name">Reference Name:</label>
+      <input type="text" id="reference_name" name="reference1_name" required>
+  
+      <label for="reference_contact">Reference Contact Information:</label>
+      <input type="text" id="reference_contact" name="reference1_contact" required>
+  
+
+  
+      <label for="grade">Grade:</label>
+      <input type="text" id="grade" name="grade" required>
+
+      <center><button id = "view">Download Resume</button></center>
+    </form>
+   </div>
+</body>
+</html>

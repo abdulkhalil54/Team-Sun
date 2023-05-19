@@ -89,7 +89,7 @@ const getApplicationView = asyncHandler(async (req, res) => {
 const applicationViewDynamic = asyncHandler(async (req, res) => {
     const studentUsername = req.params.username
 
-    let app = await db.one("SELECT username, name, year, grade, referenceName, referenceContact, attachment FROM applicationInfo WHERE username = $1", username);
+    let app = await db.one("SELECT username, name, year, grade, referenceName, referenceContact, attachment FROM applicationInfo WHERE username = $1", studentUsername);
 
     console.log(app);
     return res.status(200).json(app);
