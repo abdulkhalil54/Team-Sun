@@ -82,11 +82,24 @@ const professorPortalSectionDynamic = asyncHandler(async (req, res) => {
     });
   });
 
+const getApplicationView = asyncHandler(async (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "views", "applicationView.html"));
+});
 
+const applicationViewDynamic = asyncHandler(async (req, res) => {
+    const studentUsername = req.params.username
+
+    let app = await db.one("SELECT username, name, year, grade, referenceName, referenceContact, attachment FROM applicationInfo WHERE username = $1", username);
+
+    console.log(app);
+    return res.status(200).json(app);
+});
 
 module.exports = {
     professorPageGet,
     apiProfessorPortal,
     getProfessorPortalSection,
     professorPortalSectionDynamic,
+    getApplicationView,
+    applicationViewDynamic,
 }
