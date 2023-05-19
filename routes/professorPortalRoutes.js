@@ -10,6 +10,9 @@ router.route("/api/portal/professor")
     .get(professorPortalController.apiProfessorPortal);
 
 router.route("/portal/professor/section/:id")
-    .get(professorPortalController.redirectProfessorPortalSection);
+    .get(professorPortalController.getProfessorPortalSection);
+
+router.route("/api/portal/professor/section/:id")
+    .get(professorPortalController.professorPortalSectionDynamic);
 
 module.exports = router;

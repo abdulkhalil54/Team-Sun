@@ -16,14 +16,13 @@ function signOutFunc(event){
 
 function newApplication(event){
     event.preventDefault();
-    
-    fetch('/application/submit', {
+    console.log("New appl lciecked");
+    fetch('/api/redirect/application/submit', {
         method: 'GET',
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = "/application/submit";
+    .then(res => {
+        if (res.redirected) {
+            window.location.replace(res.url)
         }
     })
     .catch(error => {

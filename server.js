@@ -100,7 +100,7 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
 
   preferences = [[1, parseInt(section1_time)], [2, parseInt(section2_time)], [3, parseInt(section3_time)], [4, parseInt(section4_time)]]
 
-  await db.none("INSERT INTO applicationInfo(username, name, year, grade, referenceName, referenceContact, attachment, preferences, matched)"
+  await db.none("INSERT INTO applicationInfo(username, name, year, grade, referenceName, referenceContact, attachment, preferences, status)"
    + "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
    [req.session.user.username, name, year, grade, reference1_name, reference1_contact, uploadRes.Location, preferences, -1])
   .catch((error)=>{
@@ -117,8 +117,6 @@ app.get("/portal/professor", require("./routes/professorPortalRoutes"));
 
 app.get("/api/portal/professor", require("./routes/professorPortalRoutes"));
 
-//Professor's view of a section
-app.use("/portal/professor/section/:id", require("./routes/professorPortalRoutes"));
 
 //@desc professor portal
 //@route GET /api/redirect/portal/professor/section/:id
@@ -127,15 +125,20 @@ app.get('/api/redirect/portal/professor/section/:id', (req, res, next) => {
   res.redirect("/portal/professor/section/" + req.params.id);
 });
 
-// //@desc professor portal
-// //@route GET /portal/professor/section/:id
-// //endpoint 52
-// app.get('/portal/professor/section/:id', require("./routes/professorPortalSectionRoutes"));
-// const professorSectionRouter = require('./routes/professorRoutes'); 
-// app.use('/api/portal/professor/section', professorSectionRouter);
+//Professor's view of a section
+app.get("/portal/professor/section/:id", require("./routes/professorPortalRoutes"));
 
-// const profPortalViewsRouter = require('./routes/profPortalViewsRoutes');
-// app.use('/api/redirect/application/view', profPortalViewsRouter);
+//Professor's view of a section
+app.get("/api/portal/professor/section/:id", require("./routes/professorPortalRoutes"));
+
+
+app.get('/api/redirect/application/view/:username', (req, res, next) => {
+  res.redirect("/api/redirect/application/view/:username" + req.params.id);
+});
+
+app.get('/application/view/:username', require("./routes/professorPortalRoutes"));
+
+app.get('/api/application/view/:username', require("./routes/professorPortalRoutes"));
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");

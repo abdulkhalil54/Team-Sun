@@ -2,7 +2,6 @@ const titleDiv = document.getElementById("title");
 const professorName = document.getElementById("professorName");
 const applicationsDiv = document.getElementById("applications");
 const submitButton = document.getElementById("submit");
-const sectionID = {};
 
 function signOutFunc(event){
     event.preventDefault();
@@ -21,15 +20,15 @@ function signOutFunc(event){
 }
 
 async function render(){
-    const res = await fetch("profSectionData.json");
-    // const res = await fetch('api/portal/professor');
+    const sectionID = parseInt(window.location.href.slice(-2));
+    const res = await fetch(`/api/portal/professor/section/${sectionID}`);
     if(res.ok){
         const data = await res.json();
         console.log(data)
         console.log(`${data.firstName} ${data.lastName}`)
         professorName.innerText = `${data.firstName} ${data.lastName}`;
         titleDiv.innerHTML = `<h1> Section ${data.section} </h1>`;
-        sectionID.section = data.section;
+
         if(data.students.length === 0){
             submitButton.disabled = true;
         }
@@ -69,7 +68,7 @@ async function render(){
             status.setAttribute("scope", "row");
             application.setAttribute("scope", "row");
 
-            studentName.innerText = `${data.students[i].firstName} ${data.students[i].lastName}`;
+            studentName.innerText = `${data.students[i].name}`;
             const username = data.students[i].username; // Retrieve the username from your data source
             studentName.setAttribute("data-username", username);
             
@@ -91,14 +90,12 @@ async function render(){
                 const username = data.students[i].username; // Retrieve the username from your data source
 
                 try {
-                    const response = await fetch(`api/redirect/application/view/${username}`);
-                    if (response.ok) {
-                    // Handle the successful response
-                    console.log("Fetch request successful");
-                    } else {
-                    // Handle the error response
-                    console.log("Error: Fetch request failed");
-                    }
+                    const response = await fetch(`/api/redirect/application/view/${username}`)
+                    .then(res=>{
+                        window.location.replace(res.url);
+                    }).catch((err)=>{
+                        console.log(err);
+                    })
                 } catch (error) {
                     // Handle any network or fetch-related errors
                     console.log("Error: Fetch request failed", error);

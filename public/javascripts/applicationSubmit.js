@@ -72,5 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } catch (error) {
         console.error('Error submitting the form:', error);
       }
+
+      //TODO go back to student portal
     });
   });

@@ -37,10 +37,11 @@ async function render(){
                 const sectionID = row.cells[0].innerText;
 
                 // Construct the URL for the new page using the section ID
-                const url = `api/redirect/portal/professor/section/${sectionID}`;
-                await fetch(url);
-                // Navigate to the new page
-                window.location.href = url;
+                const url = `/api/redirect/portal/professor/section/${sectionID}`;
+                await fetch(url)
+                .then(res =>{
+                    window.location.replace(res.url);
+                })
             });
         });
     }

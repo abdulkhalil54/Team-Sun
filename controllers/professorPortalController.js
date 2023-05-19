@@ -42,12 +42,51 @@ const apiProfessorPortal = asyncHandler(async (req, res) => {
     }
 });
 
-const redirectProfessorPortalSection = asyncHandler(async (req, res) => {
+const getProfessorPortalSection = asyncHandler(async (req, res) => {
     res.sendFile(path.join(__dirname, "..", "views", "professorSection.html"));
 });
+
+const professorPortalSectionDynamic = asyncHandler(async (req, res) => {
+    //find section by ID and populates with that information 
+    const sectionID = req.params.id
+    const username = req.session.user.username
+  
+    //if the section doesn't exist return error message 
+    if (sectionID === undefined) {
+      return res.status(404).json({ message: 'ERROR: non-existent section.' });
+    }
+
+    const applicationList = await db.many("SELECT name, status, username FROM applicationInfo");
+    const profNames = await db.one("SELECT firstName, lastName FROM Users WHERE username = $1", username);
+    
+    // //formats student's information 
+    // const formattedStudents = students.map((student) => {
+    //   const { firstName, lastName, status, username } = student.student;
+  
+    //   return {
+    //     //max length of 50 
+    //     firstName: firstName.substring(0, 50),
+    //     lastName: lastName.substring(0, 50),
+    //     //status for each student 
+    //     status: status === -1 || status === 0 || status === 1 ? status : null,
+    //     username: username.substring(0, 50),
+    //   };
+    // });
+    //returns section and student info 
+    console.log(profNames);
+    return res.status(200).json({
+      section: sectionID,
+      firstName: profNames.firstname,
+      lastName: profNames.lastname,
+      students: applicationList,
+    });
+  });
+
+
 
 module.exports = {
     professorPageGet,
     apiProfessorPortal,
-    redirectProfessorPortalSection
+    getProfessorPortalSection,
+    professorPortalSectionDynamic,
 }
