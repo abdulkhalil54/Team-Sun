@@ -5,94 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
   <link rel="stylesheet" href="/public/stylesheets/applicationForm.css">
+  <script src = 'applicationView.js' type="module" defer></script>
 </head>
 <body>
   <div class="container">
-    <h1>429 Manager Application Form</h1>
+    <h1>429 Manager Application</h1>
     <form>
       <!-- <form action="/submit" method="POST" enctype="multipart/form-data"></form> -->
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
   
       <label for="year">Year:</label>
-      <select id="year" name="year" required>
-        <option value="freshman">Freshman</option>
-        <option value="sophomore">Sophomore</option>
-        <option value="junior">Junior</option>
-        <option value="senior">Senior</option>
-      </select>
+      <input type="text" id="year" name="year" required>
   
-      <label for="reference1_name">Reference 1 Name:</label>
-      <input type="text" id="reference1_name" name="reference1_name" required>
+      <label for="reference_name">Reference Name:</label>
+      <input type="text" id="reference_name" name="reference1_name" required>
   
-      <label for="reference1_contact">Reference 1 Contact Information:</label>
-      <input type="text" id="reference1_contact" name="reference1_contact" required>
+      <label for="reference_contact">Reference Contact Information:</label>
+      <input type="text" id="reference_contact" name="reference1_contact" required>
   
-      <label for="reference2_name">Reference 2 Name:</label>
-      <input type="text" id="reference2_name" name="reference2_name">
-  
-      <label for="reference2_contact">Reference 2 Contact Information:</label>
-      <input type="text" id="reference2_contact" name="reference2_contact">
+
   
       <label for="grade">Grade:</label>
-      <select id="grade" name="grade" required>
-        <option value="A">A</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B">B</option>
-        <option value="B-">B-</option>
-        <option value="C+">C+</option>
-        <option value="C">C</option>
-        <option value="C-">C-</option>
-        <option value="D">D</option>
-        <option value="F">F</option>
-      </select>
-      <label for="time-preference" class="table-label">Time Preference:</label>
-      <table class="time-preference">
- <table class="time-preference">
-  <thead>
-    <tr>
-      <th></th>
-      <th>1st</th>
-      <th>2nd</th>
-      <th>3rd</th>
-      <th>4th</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Section 01: T/TH 2:30-3:45 PM <br>Discussion: W 10:10-11:00 AM</td>
-      <td><input type="radio" name="section1_time" value="1"></td>
-      <td><input type="radio" name="section1_time" value="2"></td>
-      <td><input type="radio" name="section1_time" value="3"></td>
-      <td><input type="radio" name="section1_time" value="4"></td>
-    </tr>
-    <tr>
-        <td>Section 02: M/W 2:30-3:45 PM <br>Discussion: W 12:20-1:10 PM</td>
-      <td><input type="radio" name="section2_time" value="1"></td>
-      <td><input type="radio" name="section2_time" value="2"></td>
-      <td><input type="radio" name="section2_time" value="3"></td>
-      <td><input type="radio" name="section2_time" value="4"></td>
-    </tr>
-        <tr>
-      <td>Section 03: T/TH 4:00-5:15 PM <br>Discussion: W 11:15-12:05 AM</td>
-      <td><input type="radio" name="section3_time" value="1"></td>
-      <td><input type="radio" name="section3_time" value="2"></td>
-      <td><input type="radio" name="section3_time" value="3"></td>
-      <td><input type="radio" name="section3_time" value="4"></td>
-    </tr>
-        <tr>
-      <td>Section 04: T/TH 8:30-9:45 AM <br>Discussion: W 11:15-12:05 AM</td>
-      <td><input type="radio" name="section4_time" value="1"></td>
-      <td><input type="radio" name="section4_time" value="2"></td>
-      <td><input type="radio" name="section4_time" value="3"></td>
-      <td><input type="radio" name="section4_time" value="4"></td>
-    </tr>
-  </tbody>
-</table>
-      <label for="fileAttachment">Resume:</label>
-      <input type="file" id="fileAttachment" name="fileAttachment">
-      <center><button type="submit">Submit</button></center>
+      <input type="text" id="grade" name="grade" required>
+
+      <center><button id = "view">View Resume</button></center>
     </form>
    </div>
 </body>
