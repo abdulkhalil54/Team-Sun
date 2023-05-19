@@ -14,6 +14,24 @@ function signOutFunc(event){
     });
 }
 
+function newApplication(event){
+    event.preventDefault();
+    
+    fetch('/application/submit', {
+        method: 'GET',
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/application/submit";
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+}
+
 const studentName = document.getElementById("studentname");
 const tableBody = document.getElementById("body");
 const sectionID = {}
@@ -89,5 +107,7 @@ async function render(){
 document.addEventListener("DOMContentLoaded", () => {
     render();
     const sign = document.getElementById("signoutbutton");
+    const newApp = document.getElementById("newappbutton");
     sign.addEventListener("click", signOutFunc);
+    newApp.addEventListener("click", newApplication);
 });
