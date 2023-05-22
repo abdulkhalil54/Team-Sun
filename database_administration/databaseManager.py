@@ -13,7 +13,7 @@ class databaseManager:
         self.conn.autocommit = True
         
         #SQL query strings to create tables:
-        self.createApplicationsQuery = "CREATE TABLE applicationInfo(username varchar(50) primary key, name varchar(100), year varchar(10), grade char, \
+        self.createApplicationsQuery = "CREATE TABLE applicationInfo(username varchar(50) primary key, name varchar(100), year varchar(10), grade varchar(2), \
             referenceName varchar(100), referenceContact varchar(100), attachment varchar(200), preferences integer[4][2], status int);"
         self.createSectionsInfoQuery = "CREATE TABLE sectionsInfo(id int, day varchar(10), time varchar(30), capacity int, numEnrolled int)"
         self.createSectionApplicantsQuery = "CREATE TABLE sectionsApplicants(id int, studentUsername varchar(50), professorPreferences int)"
