@@ -15,8 +15,10 @@ class databaseManager:
         #SQL query strings to create tables:
         self.createApplicationsQuery = "CREATE TABLE applicationInfo(username varchar(50) primary key, name varchar(100), year varchar(10), grade char, \
             referenceName varchar(100), referenceContact varchar(100), attachment varchar(200), preferences integer[4][2], status int);"
-        self.createSectionsQuery = "CREATE TABLE Sections(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)"
-        self.createProfessorsQuery = "CREATE TABLE Professors(username varchar(50), section int, ranking int, appRanked varchar(50))"
+        self.createSectionsInfoQuery = "CREATE TABLE sectionsInfo(id int, day varchar(10), time varchar(30), capacity int, numEnrolled int)"
+        self.createSectionApplicantsQuery = "CREATE TABLE sectionsApplicants(id int, studentUsername varchar(50), professorPreferences int)"
+        #self.createSectionsQuery = "CREATE TABLE Sections(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)"
+        #self.createProfessorsQuery = "CREATE TABLE Professors(profUsername varchar(50), section int, studentUsername varchar(), ranking int, appRanked varchar(50))"
         self.createUsersQuery = "CREATE TABLE Users(username varchar(50) primary key, email varchar(100), password varchar(255), type Boolean, firstName varchar(50), lastName varchar(50))"
         self.createMatchingsQuery = "CREATE TABLE Matchings(section int, username varchar(50))"
     # ------------------------------------------------------------------------------------------------------
@@ -28,15 +30,17 @@ class databaseManager:
     # ------------------------------------------------------------------------------------------------------
     def deleteTables(self):
         self.cursor.execute("DROP TABLE applicationInfo")
-        self.cursor.execute("DROP TABLE Sections")
-        self.cursor.execute("DROP TABLE Professors")
+        self.cursor.execute("DROP TABLE SectionsInfo")
+        self.cursor.execute("DROP TABLE SectionsApplicants")
+        #self.cursor.execute("DROP TABLE Professors")
         self.cursor.execute("DROP TABLE Users")
         self.cursor.execute("DROP TABLE Matchings")
     # ------------------------------------------------------------------------------------------------------
     def createTables(self):
         self.cursor.execute(self.createApplicationsQuery)
-        self.cursor.execute(self.createSectionsQuery)
-        self.cursor.execute(self.createProfessorsQuery)
+        self.cursor.execute(self.createSectionsInfoQuery)
+        self.cursor.execute(self.createSectionApplicantsQuery)
+        #self.cursor.execute(self.createProfessorsQuery)
         self.cursor.execute(self.createUsersQuery)
         self.cursor.execute(self.createMatchingsQuery)
     # ------------------------------------------------------------------------------------------------------
@@ -45,21 +49,9 @@ class databaseManager:
         print(f"Contents of table {tableName} are:")
         for row in self.cursor.fetchall():
             print(row)  
-
-    # fill dummy values into _test tables 
-    # the dummy values are rough / inconsistent at the moment... simply a testing area
-    def fill_dummy_values(self):
-        #Applications_test: 
-        self.cursor.execute("INSERT INTO Applications_test(username, firstName, lastName, year, gpa, grade320, reference, attachment) VALUES ('testusername', 'testFirst', 'testLast', 'Freshman', 3.2, 'A', 'first last, email', 'testattachment')")
-        #Students_test:
-        self.cursor.execute("INSERT INTO Students_test(username, conflict, ranking, sectionRanked, matched) VALUES ('testusername', -1, -1, -1, -1);")
-        #Sections_test:
-        self.cursor.execute("INSERT INTO Sections_test(id, day, time, username, applicant, capacity, numEnrolled) VALUES (3, 'MonWed', '11:30 AM - 12:45 PM', 'testProfusername', 'testStudusername', 50, 2);")
-        self.cursor.execute("INSERT INTO Sections_test(id, day, time, username, applicant, capacity, numEnrolled) VALUES (3, 'second', '11:30 AM - 12:45 PM', 'SECOND', 'SECONDapplicant', 20, 7);")
-        #Professors_test:
-        self.cursor.execute("INSERT INTO Professors_test(username, section, ranking, appRanked) VALUES ('testProfUsername', 3, 1, 'testStudUsername')")
-        #Users_test:
-        self.cursor.execute("INSERT INTO Users_test(username, password, type, firstName, lastName) VALUES ('testUsername', 'testPassword', True, 'testFName', 'testLName')")
-        #Matchings_test:
-        self.cursor.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername')")
-        self.cursor.execute("INSERT INTO Matchings_test(section, username) VALUES (3, 'testStudUsername2')")   
+            
+    def addSectionInfo(self):
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (1, "T/Th", "2:30-3:45 PM", 15, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (2, "M/W", "2:30-3:45 PM", 15, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (3, "T/Th", "4:00-5:15 PM", 15, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (4, "T/Th", "8:30-9:45 AM", 15, 0))

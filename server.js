@@ -106,12 +106,24 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
 
   await db.none("INSERT INTO applicationInfo(username, name, year, grade, referenceName, referenceContact, attachment, preferences, status)"
    + "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
-   [req.session.user.username, name, year, grade, reference1_name, reference1_contact, uploadRes.Location, preferences, 0])
+   [req.session.user.username, name, year, grade, reference1_name, reference1_contact, uploadRes.Location, preferences, 2])
   .catch((error)=>{
     console.log("Application Upload Error");
     console.log(error);
     return res.status(404).json("ERROR: soem error occured");
   })
+
+  const sectionRes = await db.one("SELECT count(*) as section_count from sectionsInfo");
+
+  for (let i = 0; i < sectionRes.section_count; i++) {
+    await db.none("INSERT INTO sectionsApplicants(id, studentUsername, professorPreferences) VALUES($1, $2, $3)", [i+1, req.session.user.username, -1])
+    .catch((error)=>{
+      console.log("SectionApplicantsUpdateError");
+      console.log(error);
+      return res.status(404).json("ERROR: some error occured");
+    })
+  }
+
   return res.status(200).json("Applcaition submission successful");
 
 });
@@ -135,7 +147,6 @@ app.get("/portal/professor/section/:id", require("./routes/professorPortalRoutes
 //Professor's view of a section
 app.get("/api/portal/professor/section/:id", require("./routes/professorPortalRoutes"));
 
-
 app.get('/api/redirect/application/view/:username', (req, res, next) => {
   res.redirect("/application/view/" + req.params.username);
 });
@@ -143,6 +154,8 @@ app.get('/api/redirect/application/view/:username', (req, res, next) => {
 app.get('/application/view/:username', require("./routes/professorPortalRoutes"));
 
 app.get('/api/application/view/:username', require("./routes/professorPortalRoutes"));
+
+app.get('/api/match', require("./matching/matchingRoutes"));
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
