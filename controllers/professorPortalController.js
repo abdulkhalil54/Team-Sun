@@ -100,6 +100,21 @@ const applicationViewDynamic = asyncHandler(async (req, res) => {
     return res.status(200).json(app);
 });
 
+const submitProfPref = asyncHandler(async (req, res) => {
+    const prefArray = req.body
+
+    for (let i = 0; i < prefArray.length; i++) {
+        await db.none("UPDATE sectionsApplicants SET professorPreferences = $1 WHERE id = $2 AND studentUsername = $3", [prefArray[i].preference, prefArray[i].section, prefArray[i].username])
+        .catch((
+            error)=>{
+                console.log(error)
+                return res.status(409).json({"message":"Could not submit Professor Preferences to Database."})
+            })
+    }
+    
+    return res.status(200)
+});
+
 module.exports = {
     professorPageGet,
     apiProfessorPortal,
@@ -107,4 +122,5 @@ module.exports = {
     professorPortalSectionDynamic,
     getApplicationView,
     applicationViewDynamic,
+    submitProfPref
 }

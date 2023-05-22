@@ -21,4 +21,7 @@ router.route('/application/view/:username')
 router.route('/api/application/view/:username')
     .get(professorPortalController.applicationViewDynamic)
 
+router.route('/api/portal/professor/section/:sectionID')
+    .post(professorPortalController.submitProfPref)
+
 module.exports = router;
