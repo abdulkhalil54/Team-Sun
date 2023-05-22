@@ -22,14 +22,19 @@ const apiProfessorPortal = asyncHandler(async (req, res) => {
             let username = req.session.user.username;
             try{
                 const name = await db.one('SELECT firstName, lastName FROM Users WHERE username = $1', username);
-                const sectionInfo = await db.any('SELECT id, count(*) as app_count FROM Sections WHERE username = $1 GROUP BY id', username);
-                console.log(name);
-                const sectionInfoArray = sectionInfo.map(section => {
-                    return {
-                        id: section.id,
-                        numEnrolled: section.app_count
-                    };
-                });
+                // const sectionInfo = await db.any('SELECT id, count(*) as app_count FROM Sections WHERE username = $1 GROUP BY id', username);
+                // console.log(name);
+                // const sectionInfoArray = sectionInfo.map(section => {
+                //     return {
+                //         id: section.id,
+                //         numEnrolled: section.app_count
+                //     };
+                // });
+                const app_count = await db.one('SELECT count(*) as app_count FROM applicationInfo');
+                const sectionInfoArray = [{"sectionID": 1, "application_num": app_count.app_count},
+                                            {"sectionID": 2, "application_num": app_count.app_count},
+                                            {"sectionID": 3, "application_num": app_count.app_count},
+                                            {"sectionID": 4, "application_num": app_count.app_count}]
                 res.json({firstName: name.firstname, lastName: name.lastname, applications: sectionInfoArray});
             }catch(err){
                 console.log(err);

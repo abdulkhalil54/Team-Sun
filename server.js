@@ -106,7 +106,7 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
 
   await db.none("INSERT INTO applicationInfo(username, name, year, grade, referenceName, referenceContact, attachment, preferences, status)"
    + "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
-   [req.session.user.username, name, year, grade, reference1_name, reference1_contact, uploadRes.Location, preferences, -1])
+   [req.session.user.username, name, year, grade, reference1_name, reference1_contact, uploadRes.Location, preferences, 0])
   .catch((error)=>{
     console.log("Application Upload Error");
     console.log(error);

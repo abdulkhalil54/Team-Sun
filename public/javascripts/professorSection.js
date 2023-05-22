@@ -20,7 +20,7 @@ function signOutFunc(event){
 }
 
 async function render(){
-    const sectionID = parseInt(window.location.href.slice(-2));
+    const sectionID = parseInt(window.location.href.slice(-1));
     const res = await fetch(`/api/portal/professor/section/${sectionID}`);
     if(res.ok){
         const data = await res.json();
