@@ -20,7 +20,7 @@ function signOutFunc(event){
 }
 
 async function render(){
-    const sectionID = parseInt(window.location.href.slice(-1));
+    const sectionID = parseInt(window.location.href.split("/")[window.location.href.split("/").length - 1]);
     const res = await fetch(`/api/portal/professor/section/${sectionID}`);
     if(res.ok){
         const data = await res.json();
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 submitButton.addEventListener("click", async () => {
     const tbody = document.getElementById("applications");
     const rows = tbody.querySelectorAll("tr");
-    const sectionID = parseInt(window.location.href.slice(-1));
+    const sectionID = parseInt(window.location.href.split("/")[window.location.href.split("/").length - 1]);
     let preferences = [];
     const preferenceCount = {}; // Object to keep track of preference counts
     for (let i = 0; i < rows.length; i++) {
