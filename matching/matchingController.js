@@ -477,18 +477,22 @@ const getMatching = asyncHandler(async (req, res) => {
         console.log(err);
     });
 
+    console.log(res1);
+
     for(let i = 0; i < res1.length; i++) {
         let studentpreferences = [];
         for(let j = 0; j < res1[i].preferences.length; j++){
-            append1(studentpreferences, res1[i].preferences[j][1]);
+            studentpreferences = append1(studentpreferences, res1[i].preferences[j][1]);
         }
-        append1(students, new Student(res1[i].username, "placeholder", "placeholder", [], studentpreferences, null))
+        students = append1(students, new Student(res1[i].username, "placeholder", "placeholder", [], studentpreferences, null))
     }
 
     const res2 = await db.manyOrNone("SELECT id, capacity FROM sectionsInfo")
     .catch((err) => {
         console.log(err);
     });
+
+    console.log(res2);
 
     let sections = [];
 
@@ -505,14 +509,16 @@ const getMatching = asyncHandler(async (req, res) => {
         res3.sort(comparePref);
         let applicantsByPref = [];
         for(let i = 0; i < res3.length; i++){
-            append1(applicantsByPref, res3[i].studentUsername);
+            applicantsByPref = append1(applicantsByPref, res3[i].studentUsername);
         }
-        append1(sections, new Section(res2[p].id, 'ph', 'ph', 'ph', res2[p].capacity, 'ph', res2[p].id, applicantsByPref))
+        sections = append1(sections, new Section(res2[p].id, 'ph', 'ph', 'ph', res2[p].capacity, 'ph', res2[p].id, applicantsByPref))
     }
-
+    console.log(students);
+    console.log(sections);
     let match = createMatching(students, sections);
 
     console.log(typeof(match));
+    console.log(match);
     if (typeof(match) === 'string'){
         res.status(409).json({"message": match});
     } else {

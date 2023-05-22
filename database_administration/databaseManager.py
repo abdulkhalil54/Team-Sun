@@ -51,7 +51,7 @@ class databaseManager:
             print(row)  
             
     def addSectionInfo(self):
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (1, "T/Th", "2:30-3:45 PM", 15, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (2, "M/W", "2:30-3:45 PM", 15, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (3, "T/Th", "4:00-5:15 PM", 15, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (4, "T/Th", "8:30-9:45 AM", 15, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (1, "T/Th", "2:30-3:45 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (2, "M/W", "2:30-3:45 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (3, "T/Th", "4:00-5:15 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (4, "T/Th", "8:30-9:45 AM", 2, 0))

@@ -114,6 +114,7 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
   })
 
   const sectionRes = await db.one("SELECT count(*) as section_count from sectionsInfo");
+  console.log(sectionRes);
 
   for (let i = 0; i < sectionRes.section_count; i++) {
     await db.none("INSERT INTO sectionsApplicants(id, studentUsername, professorPreferences) VALUES($1, $2, $3)", [i+1, req.session.user.username, -1])

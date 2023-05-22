@@ -161,8 +161,7 @@ submitButton.addEventListener("click", async () => {
             headers: {
               "Content-Type": "application/json",
             }, 
-            body: {section: `${sectionID.section}`,
-                   preferences: JSON.stringify(preferences)},
+            body: JSON.stringify(preferences)
         });
     }
 });
