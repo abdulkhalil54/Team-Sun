@@ -79,6 +79,8 @@ app.use('/application/submit', (req, res) => {
 });
 
 app.use('/api/application/submit', upload.single('fileAttachment'), async (req, res)=>{
+  let error = false;
+
   const stream = fs.createReadStream(req.file.destination + req.file.filename);
   const uploadParams = {Bucket: "attachments-429-manager-app", Key: req.file.filename, Body: stream};
 
@@ -110,7 +112,7 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
   .catch((error)=>{
     console.log("Application Upload Error");
     console.log(error);
-    return res.status(404).json("ERROR: soem error occured");
+    error = true;
   })
 
   const sectionRes = await db.one("SELECT count(*) as section_count from sectionsInfo");
@@ -121,11 +123,16 @@ app.use('/api/application/submit', upload.single('fileAttachment'), async (req, 
     .catch((error)=>{
       console.log("SectionApplicantsUpdateError");
       console.log(error);
-      return res.status(404).json("ERROR: some error occured");
+      error = true;
     })
   }
 
-  return res.status(200).json("Applcaition submission successful");
+  if(error === false) {
+    return res.status(404).json("ERROR: some error occured");
+  }
+  else{
+    return res.status(200).json("Applcaition submission successful");
+  }
 
 });
 
