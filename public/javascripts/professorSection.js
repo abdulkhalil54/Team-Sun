@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 submitButton.addEventListener("click", async () => {
     const tbody = document.getElementById("applications");
     const rows = tbody.querySelectorAll("tr");
+    const sectionID = parseInt(window.location.href.slice(-1));
     let preferences = [];
     const preferenceCount = {}; // Object to keep track of preference counts
     for (let i = 0; i < rows.length; i++) {
@@ -149,12 +150,12 @@ submitButton.addEventListener("click", async () => {
         } else {
             preferenceCount[preferenceValue] = 1;
             const username = rows[i].querySelector("th:nth-child(2)").getAttribute("data-username");
-            preferences.push({username: username, preference: preferenceValue});
+            preferences.push({username: username, preference: preferenceValue, section: sectionID});
         }
     }
     console.log(JSON.stringify(preferences));
     if(preferences.length > 0){
-        const url = `/api/portal/professor/section/${sectionID.section}`;
+        const url = `/api/portal/professor/section/${sectionID}`;
         fetch(url,{
             method: "POST", 
             headers: {
