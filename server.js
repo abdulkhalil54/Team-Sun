@@ -74,6 +74,10 @@ app.get('/api/redirect/application/submit', (req, res) => {
   res.redirect("/application/submit");
 });
 
+app.get('/api/redirect/portal/professor', (req, res) => {
+  res.redirect("/portal/professor");
+});
+
 app.use('/application/submit', (req, res) => {
   res.sendFile(path.join(__dirname, "views", "applicationSubmit.html"));
 });

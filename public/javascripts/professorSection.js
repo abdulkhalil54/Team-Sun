@@ -164,4 +164,13 @@ submitButton.addEventListener("click", async () => {
             body: JSON.stringify(preferences)
         });
     }
+
+    const url = `/api/redirect/portal/professor`;
+    fetch(url,{
+        method: "GET"
+    }).then((res) => {
+        if (res.redirected) {
+            window.location.replace(res.url);
+        }
+    });
 });

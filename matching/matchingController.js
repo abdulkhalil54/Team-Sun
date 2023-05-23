@@ -534,7 +534,7 @@ const getMatching = asyncHandler(async (req, res) => {
                     console.log(err);
                 });
 
-                await db.none("UPDATE sectionInfo SET numEnrolled = numEnrolled + 1 WHERE id = $1", [match[i][j]])
+                await db.none("UPDATE sectionsInfo SET numEnrolled = numEnrolled + 1 WHERE id = $1", [res2[i].id])
                 .catch((err) => {
                     console.log(err);
                 });
