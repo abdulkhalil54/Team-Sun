@@ -146,8 +146,7 @@ function createMatching(studentsList, /*professorsList,*/ sectionsList){
 
 
 
-    //Ash: 2 tasks here
-
+    
 
 	for (let i = 0; i < sectionsList.length; i++) {
 		if (sectionsList[i].getPreferences() === []) {
@@ -479,10 +478,23 @@ function contains(arr, obj) {
 
 // let match = createMatching([stud1, stud2, stud3, stud4], [sec1, sec2, sec3, sec4]);
 
-
-
-
 const getMatching = asyncHandler(async (req, res) => {
+
+    //Ash: 2 tasks here
+
+    // Empty matchings table before initiating matching process
+    
+    await db.none("TRUNCATE Matchings");
+   
+    // Update the status field of applicationInfo to 2 for all rows before initiaiting the matching process
+
+    await db.none("UPDATE applicationInfo SET status = 2")
+    .catch((
+        error)=>{
+            console.log(error)
+            return res.status(409).json({"message":"Could not set app status to 2."})
+        })
+    
     let students = [];
     const res1 = await db.manyOrNone("SELECT username, preferences FROM applicationInfo")
     .catch((err) => {
@@ -564,4 +576,6 @@ const getMatching = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMatching,
+    emptyTable,
+    updateAppInfo,
 };
