@@ -83,6 +83,18 @@ app.use('/application/submit', (req, res) => {
 });
 
 app.use('/api/application/submit', upload.single('fileAttachment'), async (req, res)=>{
+
+  let currApp = await db.manyOrNone("SELECT * FROM applicationinfo WHERE username = $1", req.session.user.username)
+  .catch((err)=>{
+    console.log(err);
+  })
+
+  if (currApp.length > 0){
+    await db.none("DELETE FROM applicationinfo WHERE username = $1", req.session.user.username)
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   let error = false;
 
   const stream = fs.createReadStream(req.file.destination + req.file.filename);
