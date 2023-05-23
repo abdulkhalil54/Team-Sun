@@ -533,7 +533,7 @@ const getMatching = asyncHandler(async (req, res) => {
         res3.sort(comparePref);
         let applicantsByPref = [];
         for(let i = 0; i < res3.length; i++){
-            applicantsByPref = append1(applicantsByPref, res3[i].studentUsername);
+            applicantsByPref = append1(applicantsByPref, res3[i].studentusername);
         }
         sections = append1(sections, new Section(res2[p].id, 'ph', 'ph', 'ph', res2[p].capacity, 'ph', res2[p].id, applicantsByPref))
     }
@@ -564,7 +564,7 @@ const getMatching = asyncHandler(async (req, res) => {
                 });
             }
         }
-        res.status(200).json({"mesaage": "Students were matched to sections"});
+        res.status(200).json({"mesaage": "Students were matched to sections", "matching": match});
         await db.none("UPDATE applicationInfo SET status = $1 WHERE status = $2", [1, 2])
         .catch((err) => {
             console.log(err);
@@ -576,6 +576,4 @@ const getMatching = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMatching,
-    emptyTable,
-    updateAppInfo,
 };
