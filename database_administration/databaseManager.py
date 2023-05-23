@@ -15,7 +15,7 @@ class databaseManager:
         #SQL query strings to create tables:
         self.createApplicationsQuery = "CREATE TABLE applicationInfo(username varchar(50) primary key, name varchar(100), year varchar(10), grade varchar(2), \
             referenceName varchar(100), referenceContact varchar(100), attachment varchar(200), preferences integer[4][2], status int);"
-        self.createSectionsInfoQuery = "CREATE TABLE sectionsInfo(id int, day varchar(10), time varchar(30), capacity int, numEnrolled int)"
+        self.createSectionsInfoQuery = "CREATE TABLE sectionsInfo(id int, firstName varchar(50), lastName varchar(50), email varchar(50), day varchar(10), time varchar(30), capacity int, numEnrolled int)"
         self.createSectionApplicantsQuery = "CREATE TABLE sectionsApplicants(id int, studentUsername varchar(50), professorPreferences int)"
         #self.createSectionsQuery = "CREATE TABLE Sections(id int, day varchar(10), time varchar(30), username varchar(50), applicant varchar(50), capacity int, numEnrolled int)"
         #self.createProfessorsQuery = "CREATE TABLE Professors(profUsername varchar(50), section int, studentUsername varchar(), ranking int, appRanked varchar(50))"
@@ -51,7 +51,7 @@ class databaseManager:
             print(row)  
             
     def addSectionInfo(self):
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (1, "T/Th", "2:30-3:45 PM", 1, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (2, "M/W", "2:30-3:45 PM", 1, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (3, "T/Th", "4:00-5:15 PM", 1, 0))
-        self.cursor.execute("INSERT INTO sectionsInfo(id, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s)", (4, "T/Th", "8:30-9:45 AM", 2, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (1, "Matt", "rattigan", "mrattigan@umass.edu", "T/Th", "2:30-3:45 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (2, "Random", "Professor", "random@umass.edu", "M/W", "2:30-3:45 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (3, "Mysterious", "Professor", "mysterious@umass.edu", "T/Th", "4:00-5:15 PM", 1, 0))
+        self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (4, "My", "Professor", "myprofessor@umass.edu", "T/Th", "8:30-9:45 AM", 2, 0))

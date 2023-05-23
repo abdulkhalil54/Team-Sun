@@ -37,7 +37,7 @@ const sectionID = {}
 
 async function render(){
     try{
-        const res = await fetch("/javascripts/studentMockData.json");
+        const res = await fetch("/api/portal/student", {method: "GET"});
         if(res.ok){
             //student Name field
             const data = await res.json();
@@ -80,7 +80,7 @@ async function render(){
 
                 Professor.innerText = `${data.preferences[i].professorfirstName} ${data.preferences[i].professorlastName}`
                 
-                let statusList = ["application not found","rejected","pending","accepted"]
+                let statusList = ["application not found","accepted", "rejected", "pending"]
                 let statusNum = parseInt(data.preferences[i].status)+1
                 status.innerText = statusList[statusNum]
 

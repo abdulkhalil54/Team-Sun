@@ -59,7 +59,7 @@ app.get('/api/redirect/portal/student', (req, res) => {
   res.redirect("/portal/student");
 });
 
-app.post('/portal/student', require("./routes/studentPortalRoutes"));
+app.get('/api/portal/student', require("./routes/studentPortalRoutes"));
 
 //if the user is loggin out, destroy the session and redirect to login
 app.get('/logout', function(req, res){

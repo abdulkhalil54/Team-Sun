@@ -143,9 +143,15 @@ class Application{
 //takes professor preference list and student preference list and returns result matching
 //matching is by index
 function createMatching(studentsList, /*professorsList,*/ sectionsList){
+
+
+
+    //Ash: 2 tasks here
+
+
 	for (let i = 0; i < sectionsList.length; i++) {
 		if (sectionsList[i].getPreferences() === []) {
-			let bad = "Not enough students applied for Section " + i
+			let bad = "Not enough students applied for Section " + i;
 			return bad;
 		}
 	}

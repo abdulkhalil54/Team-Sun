@@ -5,6 +5,8 @@ const studentPortalController = require('../controllers/studentPortalController.
 
 router.route("/portal/student")
     .get(studentPortalController.studentPageGet)
-    .post(studentPortalController.studentPagePost)
+
+router.route("/api/portal/student")
+    .get(studentPortalController.studentPageDynamic)
 
 module.exports = router
