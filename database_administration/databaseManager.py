@@ -55,3 +55,6 @@ class databaseManager:
         self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (2, "Random", "Professor", "random@umass.edu", "M/W", "2:30-3:45 PM", 1, 0))
         self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (3, "Mysterious", "Professor", "mysterious@umass.edu", "T/Th", "4:00-5:15 PM", 1, 0))
         self.cursor.execute("INSERT INTO sectionsInfo(id, firstName, lastName, email, day, time, capacity, numEnrolled) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (4, "My", "Professor", "myprofessor@umass.edu", "T/Th", "8:30-9:45 AM", 2, 0))
+        
+    def emptyTable(self, tableName):
+        self.cursor.execute(f"TRUNCATE {tableName}")
