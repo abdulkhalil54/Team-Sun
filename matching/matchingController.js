@@ -564,7 +564,13 @@ const getMatching = asyncHandler(async (req, res) => {
                 });
             }
         }
-        res.status(200).json({"mesaage": "Students were matched to sections", "matching": match});
+        let matchingDetailed = [];
+        for (let p = 0; p < res2.length; p++) {
+            for (let i = 0; i < match[p].length; i++) {
+                matchingDetailed.push({"id": res2[p].id, "username": match[p][i]});
+            }
+        }
+        res.status(200).json({"mesaage": "Students were matched to sections", "matching": matchingDetailed});
         await db.none("UPDATE applicationInfo SET status = $1 WHERE status = $2", [1, 2])
         .catch((err) => {
             console.log(err);
