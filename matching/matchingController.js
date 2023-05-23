@@ -143,6 +143,12 @@ class Application{
 //takes professor preference list and student preference list and returns result matching
 //matching is by index
 function createMatching(studentsList, /*professorsList,*/ sectionsList){
+	for (let i = 0; i < sectionsList.length; i++) {
+		if (sectionsList[i].getPreferences() === []) {
+			let bad = "Not enough students applied for Section " + i
+			return bad;
+		}
+	}
     var numStudents = studentsList.length;
     //creates a 2d array of application preferences, applicationPreferences is 2d array
     let studentPreferences =[];
